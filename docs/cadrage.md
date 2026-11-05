@@ -157,8 +157,10 @@ Prises par Louis le 2026-11-05 :
 
 Conséquence de la décision 1 : la règle « versions françaises officielles » a une exception documentée pour les Q&A. L'assistant répond en français et cite le passage anglais tel quel, sans traduction affichée comme officielle. Risque : la récupération multilingue (question en français, passage en anglais) est à mesurer.
 
+Prises par Louis le 2026-11-05 (suite) :
+3. Recherche : implémentation maison (BM25 + cosinus + RRF).
+4. Licence : MIT (fichier `LICENSE` ajouté, avec une réserve sur les textes réglementaires non redistribués).
+
 À valider :
-3. Recherche : implémentation maison (recommandée) ou LanceDB.
-4. Licence : MIT.
 5. Compte PISTE pour Légifrance : à créer par toi, car l'ordonnance est dans le périmètre (la page Légifrance peut aussi être téléchargée à la main).
 6. Texte exact des Q&A ESMA : un téléchargement réel est nécessaire. `robots.txt` d'ESMA non vérifié. Je te donnerai la commande à lancer dans ton terminal.

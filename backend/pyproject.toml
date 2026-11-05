@@ -3,7 +3,7 @@ name = "veille-mica"
 version = "0.1.0"
 description = "Assistant RAG de veille réglementaire sur les crypto-actifs (MiCA)"
 requires-python = ">=3.11"
-dependencies = ["beautifulsoup4>=4.12"]
+dependencies = ["beautifulsoup4>=4.12", "pyyaml>=6"]
 
 [dependency-groups]
 dev = ["pytest>=8"]

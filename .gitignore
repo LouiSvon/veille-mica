@@ -1,5 +1,7 @@
-sources/brut/
+data/raw/
+data/processed/
 .DS_Store
 .venv/
 __pycache__/
-data/
+.pytest_cache/
+node_modules/

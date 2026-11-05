@@ -1,0 +1,121 @@
+# Registre des sources. Une entrée par texte.
+# Valeurs inconnues : "a_fournir". Le hash est celui du fichier téléchargé tel quel.
+# Les textes bruts ne sont pas versionnés (data/raw/) : scripts/telecharger.py les récupère.
+sources:
+  - id: mica
+    titre: "Règlement (UE) 2023/1114 sur les marchés de crypto-actifs (MiCA)"
+    identifiant: "CELEX 32023R1114"
+    niveau: noyau
+    contraignant: true
+    url_officielle: "https://eur-lex.europa.eu/eli/reg/2023/1114/oj/fra"
+    url_telechargement: "https://publications.europa.eu/resource/celex/32023R1114"
+    en_tetes:
+      Accept: "application/xhtml+xml"
+      Accept-Language: "fr"
+    fichier: "mica-2023-1114-fr.xhtml"
+    format: xhtml
+    langue: fr
+    version: "Texte du Journal officiel (JO L 150 du 9.6.2023), non consolidé"
+    date_consultation: "2026-11-05"
+    sha256: "74d02d6db11e8d6a532c696edd0f317a268476f64df72af33c12661d87af9ec0"
+    octets: 1818452
+    volume_mesure: "149 articles, 6 annexes, 533 passages"
+    reutilisation: "EUR-Lex : décision 2011/833/UE (notice légale lue par recherche, 2026-11-05)"
+    statut: telecharge_et_lu
+
+  - id: tfr
+    titre: "Règlement (UE) 2023/1113 sur les informations accompagnant les transferts de fonds et de certains crypto-actifs"
+    identifiant: "CELEX 32023R1113"
+    niveau: noyau
+    contraignant: true
+    url_officielle: "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32023R1113"
+    url_telechargement: "https://publications.europa.eu/resource/celex/32023R1113"
+    en_tetes:
+      Accept: "application/xhtml+xml"
+      Accept-Language: "fr"
+    fichier: "tfr-2023-1113-fr.xhtml"
+    format: xhtml
+    langue: fr
+    version: "Texte du Journal officiel, non consolidé"
+    date_consultation: "2026-11-05"
+    sha256: "d8e5382a21250dc0a8431b69097cb7eab2ce579430afccfbb98113ae63e11181"
+    octets: 356796
+    volume_mesure: "40 articles, 71 passages"
+    reutilisation: "EUR-Lex : décision 2011/833/UE (notice légale lue par recherche, 2026-11-05)"
+    statut: telecharge_et_lu
+
+  - id: eba-gl-2024-11
+    titre: "Orientations de l'ABE sur les exigences d'information relatives aux transferts de fonds et de certains crypto-actifs (travel rule)"
+    identifiant: "EBA/GL/2024/11, 4 juillet 2024"
+    niveau: noyau
+    contraignant: false
+    url_officielle: "https://www.eba.europa.eu/activities/single-rulebook/regulatory-activities/anti-money-laundering-and-countering-financing-terrorism/guidelines-information-requirements-relation-transfers-funds-and-certain-crypto-assets-transfers"
+    url_telechargement: "https://www.eba.europa.eu/sites/default/files/2024-09/6de6e9b9-0ed9-49cd-985d-c0834b5b4356/Travel%20Rule%20Guidelines_Final%20Report%20(EBA.GL_.2024.11)_FR_COR.pdf"
+    en_tetes: {}
+    fichier: "eba-gl-2024-11-fr.pdf"
+    format: pdf
+    langue: fr
+    version: "Version FR_COR (corrigée), à confirmer à la lecture"
+    date_consultation: a_fournir
+    sha256: a_fournir
+    octets: a_fournir
+    volume_mesure: a_fournir
+    reutilisation: a_fournir
+    statut: a_telecharger
+
+  - id: amf-doc-2024-08
+    titre: "Position AMF DOC-2024-08 : orientations de l'ABE sur certains transferts de crypto-actifs"
+    identifiant: "DOC-2024-08"
+    niveau: extension_1
+    contraignant: a_fournir
+    url_officielle: "https://www.amf-france.org/fr/reglementation/doctrine/doc-2024-08"
+    url_telechargement: a_fournir
+    en_tetes: {}
+    fichier: "amf-doc-2024-08-fr.html"
+    format: a_fournir
+    langue: fr
+    version: a_fournir
+    date_consultation: a_fournir
+    sha256: a_fournir
+    octets: a_fournir
+    volume_mesure: a_fournir
+    reutilisation: a_fournir
+    statut: a_telecharger
+
+  - id: ordonnance-2024-936
+    titre: "Ordonnance n° 2024-936 du 15 octobre 2024 relative aux marchés de crypto-actifs"
+    identifiant: "JORFTEXT000050353747"
+    niveau: extension_1
+    contraignant: true
+    url_officielle: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050353747"
+    url_telechargement: a_fournir
+    en_tetes: {}
+    fichier: "ordonnance-2024-936-fr.html"
+    format: a_fournir
+    langue: fr
+    version: a_fournir
+    date_consultation: a_fournir
+    sha256: a_fournir
+    octets: a_fournir
+    volume_mesure: a_fournir
+    reutilisation: "Légifrance : licence ouverte 2.0 via l'API PISTE (compte à créer par Louis)"
+    statut: a_telecharger
+
+  - id: esma-qa-mica
+    titre: "ESMA : questions-réponses sur MiCA (Interactive Single Rulebook)"
+    identifiant: "a_fournir"
+    niveau: extension_1
+    contraignant: false
+    url_officielle: "https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica"
+    url_telechargement: a_fournir
+    en_tetes: {}
+    fichier: a_fournir
+    format: a_fournir
+    langue: en
+    version: a_fournir
+    date_consultation: a_fournir
+    sha256: a_fournir
+    octets: a_fournir
+    volume_mesure: a_fournir
+    reutilisation: a_fournir
+    statut: a_telecharger

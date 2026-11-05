@@ -2,9 +2,9 @@ from pathlib import Path
 
 import pytest
 
-from src.decoupage.decouper import decouper, SEUIL_CARACTERES
+from app.chunking.decouper import decouper, SEUIL_CARACTERES
 
-BRUT = Path(__file__).resolve().parent.parent / "sources" / "brut"
+BRUT = Path(__file__).resolve().parents[2] / "data" / "raw"
 MICA = BRUT / "mica-2023-1114-fr.xhtml"
 TFR = BRUT / "tfr-2023-1113-fr.xhtml"
 
@@ -40,7 +40,7 @@ def test_mini_article_long_decoupe_par_paragraphe(tmp_path):
     assert "x-anx-I" in ids
 
 
-@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (sources/brut non versionné)")
+@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
 def test_mica_149_articles_et_6_annexes():
     p = decouper(MICA, "mica", "u")
     articles = {c["article"] for c in p if c["type"] == "article"}
@@ -48,14 +48,14 @@ def test_mica_149_articles_et_6_annexes():
     assert len([c for c in p if c["type"] == "annexe"]) == 6
 
 
-@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (sources/brut non versionné)")
+@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
 def test_mica_article_143_cite_le_1er_juillet_2026():
     p = {c["chunk_id"]: c for c in decouper(MICA, "mica", "u")}
     texte = p["mica-art-143"]["texte"] if "mica-art-143" in p else p["mica-art-143-p3"]["texte"]
     assert "jusqu’au 1 er juillet 2026" in texte
 
 
-@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (sources/brut non versionné)")
+@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
 def test_mica_aucun_passage_vide_ni_geant():
     p = decouper(MICA, "mica", "u")
     assert all(len(c["texte"]) > 20 for c in p)
@@ -63,13 +63,13 @@ def test_mica_aucun_passage_vide_ni_geant():
     assert max(len(c["texte"]) for c in p if c["type"] == "article") < 5000
 
 
-@pytest.mark.skipif(not TFR.exists(), reason="texte brut absent (sources/brut non versionné)")
+@pytest.mark.skipif(not TFR.exists(), reason="texte brut absent (data/raw non versionné)")
 def test_tfr_40_articles():
     articles = {c["article"] for c in decouper(TFR, "tfr", "u") if c["type"] == "article"}
     assert articles == {str(n) for n in range(1, 41)}
 
 
-@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (sources/brut non versionné)")
+@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
 def test_mica_article_3_decoupe_et_garde_les_definitions():
     p = [c for c in decouper(MICA, "mica", "u") if c["article"] == "3" and c["paragraphe"] == "1"]
     assert len(p) > 1
