@@ -1,16 +1,9 @@
 :root {
+  color-scheme: light;
   --fond: #ffffff; --gris: #f6f6f6; --surface: #ffffff; --texte: #161616; --doux: #4d4d4d; --bord: #cfcfcf; --bord-fort: #161616;
   --accent: #0b3d91; --accent-fort: #072a66; --sur-accent: #ffffff; --accent-doux: #e9eef8;
   --ok: #0f6b3a; --ok-fond: #e3f3ea; --refus: #7a4a00; --refus-fond: #fdf0d9;
   --erreur: #b3261e; --alerte-fond: #fff3cf; --alerte-bord: #b8860b;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fond: #121212; --gris: #1b1b1b; --surface: #181818; --texte: #f0f0f0; --doux: #b5b5b5; --bord: #3d3d3d; --bord-fort: #f0f0f0;
-    --accent: #8fb3ff; --accent-fort: #b4ccff; --sur-accent: #0a0a0a; --accent-doux: #1c2a45;
-    --ok: #6fd49b; --ok-fond: #12291d; --refus: #f0b35f; --refus-fond: #2d2110;
-    --erreur: #ff9a93; --alerte-fond: #2b2308; --alerte-bord: #a9801a;
-  }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--fond); color: var(--texte); font: 16px/1.6 Arial, Helvetica, sans-serif; }
@@ -25,7 +18,7 @@ a { color: var(--accent); text-underline-offset: 3px; }
 .marque { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
 .logo { width: 30px; height: 30px; border: 2px solid var(--accent); color: var(--accent); display: grid; place-items: center; }
 .pastille { font-size: .82rem; padding: 3px 10px; border: 1px solid var(--bord); color: var(--doux); }
-.hero { background: var(--gris); border-top: 1px solid var(--bord); padding: 40px 0 36px; }
+.hero { background: var(--gris); border-bottom: 1px solid var(--bord); padding: 40px 0 36px; }
 .hero h1 { font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.2; margin: 0 0 14px; max-width: 22em; }
 .hero p { margin: 0; max-width: 42em; color: var(--doux); font-size: 1.05rem; }
 .preuves { display: flex; flex-wrap: wrap; gap: 8px 28px; list-style: none; padding: 0; margin: 22px 0 0; }
@@ -45,7 +38,7 @@ button { font: inherit; cursor: pointer; }
 
 .titre-section { font-size: 1.2rem; font-weight: 700; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--bord); }
 .exemples { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-.exemple { text-align: left; background: var(--surface); color: var(--texte); border: 1px solid var(--bord); border-left: 4px solid var(--accent); border-radius: 0; padding: 12px 14px; font-size: .93rem; line-height: 1.45; }
+.exemple { display: flex; align-items: flex-start; text-align: left; background: var(--surface); color: var(--texte); border: 1px solid var(--bord); border-left: 4px solid var(--accent); border-radius: 0; padding: 12px 14px; font-size: .93rem; line-height: 1.45; }
 .exemple:hover:not(:disabled) { background: var(--accent-doux); }
 .exemple:disabled { opacity: .6; cursor: progress; }
 

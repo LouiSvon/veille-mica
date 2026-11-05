@@ -55,7 +55,9 @@ export default function Page() {
             </div>
             <span className="pastille">100 % local, aucune donnée envoyée à un service tiers</span>
           </div>
-          <div className="hero">
+        </div>
+        <div className="hero">
+         <div className="conteneur">
             <h1>La réglementation des crypto-actifs, citée au mot près.</h1>
             <p>
               Posez une question en français. L'assistant retrouve le passage exact dans les textes officiels, le cite avec sa source,
@@ -66,7 +68,7 @@ export default function Page() {
               <li>Refus explicite hors corpus</li>
               <li>Évaluation mesurée et publiée</li>
             </ul>
-          </div>
+         </div>
         </div>
       </header>
 
