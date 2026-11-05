@@ -59,8 +59,9 @@ def test_mica_article_143_cite_le_1er_juillet_2026():
 def test_mica_aucun_passage_vide_ni_geant():
     p = decouper(MICA, "mica", "u")
     assert all(len(c["texte"]) > 20 for c in p)
-    # Un article numéroté sans paragraphes reste un passage unique : on borne l'énorme pour détecter une erreur d'analyse.
-    assert max(len(c["texte"]) for c in p if c["type"] == "article") < 5000
+    # Borne anti-erreur d'analyse. Le plus long passage légitime est la définition 33 (État membre d'origine, 5 707 car.),
+    # une seule définition avec ses sous-points a) à f).
+    assert max(len(c["texte"]) for c in p if c["type"] == "article") < 8000
 
 
 @pytest.mark.skipif(not TFR.exists(), reason="texte brut absent (data/raw non versionné)")
@@ -70,9 +71,28 @@ def test_tfr_40_articles():
 
 
 @pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
-def test_mica_article_3_decoupe_et_garde_les_definitions():
-    p = [c for c in decouper(MICA, "mica", "u") if c["article"] == "3" and c["paragraphe"] == "1"]
-    assert len(p) > 1
-    tout = "\n".join(c["texte"] for c in p)
-    assert "«crypto-actif»" in tout
-    assert all(c["texte"].startswith("1. Aux fins du présent règlement") for c in p)
+def test_mica_article_3_une_definition_par_point():
+    p = [c for c in decouper(MICA, "mica", "u") if c["article"] == "3" and c.get("point")]
+    points = [int(c["point"]) for c in p]
+    assert points == list(range(1, len(points) + 1)) and len(points) >= 45
+    par_point = {c["point"]: c for c in p}
+    assert par_point["5"]["texte"].startswith("5) «crypto-actif»: une représentation numérique d’une valeur")
+    assert "«jeton de monnaie électronique»" in par_point["7"]["texte"]
+    assert par_point["5"]["chunk_id"] == "mica-art-3-p1-pt5"
+    # Aucune définition n'est mélangée à la suivante.
+    assert "«jeton se référant" not in par_point["5"]["texte"]
+
+
+@pytest.mark.skipif(not TFR.exists(), reason="texte brut absent (data/raw non versionné)")
+def test_tfr_article_3_definitions_par_point():
+    p = [c for c in decouper(TFR, "tfr", "u") if c["article"] == "3" and c.get("point")]
+    assert [int(c["point"]) for c in p] == list(range(1, len(p) + 1)) and len(p) >= 20
+
+
+def test_decouper_definitions_ne_decoupe_pas_une_liste_ordinaire():
+    from app.chunking.decouper import decouper_definitions
+    assert decouper_definitions("1. Intro:\na) item;\nb) item.") is None
+    liste = "1. Intro:\n" + "\n".join(f"{i}) «terme{i}»: définition {i}" for i in range(1, 7))
+    res = decouper_definitions(liste)
+    assert [pt for pt, _ in res] == ["1", "2", "3", "4", "5", "6"]
+    assert res[2][1] == "3) «terme3»: définition 3"

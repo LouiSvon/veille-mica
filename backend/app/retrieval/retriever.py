@@ -20,6 +20,8 @@ def texte_indexe(p: dict) -> str:
     pour que « article 143 » ou « règlement 2023/1113 » dans une question retrouve le bon passage."""
     if p["type"] == "article":
         etiquette = f"article {p['article']}" + (f" paragraphe {p['paragraphe']}" if p["paragraphe"] else "")
+        if p.get("point"):
+            etiquette += f" point {p['point']} définition"
     else:
         etiquette = p["article"]
     return f"{p['source_titre']} | {etiquette} | {p['titre']}\n{p['texte']}"

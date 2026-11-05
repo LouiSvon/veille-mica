@@ -52,6 +52,24 @@ def sous_decouper(texte: str) -> list[str]:
     return groupes
 
 
+RE_DEFINITION = re.compile(r"^(\d+)\)\s+«")  # 5) «crypto-actif»: ...
+MIN_DEFINITIONS = 5
+
+
+def decouper_definitions(texte: str) -> list[tuple[str, str]] | None:
+    """Si le paragraphe est une liste de définitions numérotées (« 5) «terme»: ... »), renvoie un passage par point,
+    avec ses sous-items (a), b)). Sinon None. Une définition se cite par son point : « article 3, point 5 »."""
+    lignes = texte.split("\n")
+    debuts = [i for i, l in enumerate(lignes) if RE_DEFINITION.match(l)]
+    if len(debuts) < MIN_DEFINITIONS:
+        return None
+    points = []
+    for k, d in enumerate(debuts):
+        fin = debuts[k + 1] if k + 1 < len(debuts) else len(lignes)
+        points.append((RE_DEFINITION.match(lignes[d]).group(1), "\n".join(lignes[d:fin])))
+    return points
+
+
 def decouper(chemin: Path, source_id: str, url: str) -> list[dict]:
     soupe = BeautifulSoup(chemin.read_text(encoding="utf-8"), "html.parser")
     passages = []
@@ -78,6 +96,12 @@ def decouper(chemin: Path, source_id: str, url: str) -> list[dict]:
             passages.append({**base, "chunk_id": f"{source_id}-art-{numero}", "paragraphe": "", "texte": complet})
         else:
             for p, texte in parties:
+                definitions = decouper_definitions(texte) if len(texte) > SEUIL_CARACTERES else None
+                if definitions:
+                    for point, morceau in definitions:
+                        passages.append({**base, "chunk_id": f"{source_id}-art-{numero}-p{p}-pt{point}",
+                                         "paragraphe": p, "point": point, "texte": morceau})
+                    continue
                 morceaux = sous_decouper(texte) if len(texte) > SEUIL_CARACTERES else [texte]
                 for k, morceau in enumerate(morceaux):
                     suffixe = f"-s{k + 1}" if len(morceaux) > 1 else ""

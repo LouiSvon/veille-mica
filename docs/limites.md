@@ -41,3 +41,13 @@ Ce ne sont pas des scores : les questions sont proposées par l'assistant et pas
 - Les trois modes retrouvent le passage de référence dans les 5 premiers pour 6 questions sur 7.
 - La question de définition « Comment MiCA définit-il un crypto-actif ? » (q004) n'est retrouvée par aucun mode dans les 10 premiers : le terme « crypto-actif » apparaît dans presque tous les passages et le passage des définitions (article 3, morceau 1) ne se distingue pas. À reprendre après validation : étiquette de définition dans le texte indexé, ou recherche sur le terme défini.
 - Défaut corrigé pendant la rédaction : l'en-tête courant de la page 2 de la position AMF se retrouvait au milieu d'une phrase. Retiré, avec un test.
+
+## Correction de q004 : définitions découpées par point (2026-11-05)
+
+- Cause constatée : l'article 3 de MiCA était découpé en 7 morceaux de 3 500 caractères contenant chacun une douzaine de définitions. Le passage de « crypto-actif » était classé 503e par BM25 et 68e par les vecteurs.
+- Correction structurelle, pas un réglage sur la question : toute liste de définitions numérotées (« N) «terme»: ... », au moins 5 points) devient un passage par point. Résultat mesuré : MiCA article 3, 51 points ; règlement 2023/1113 article 3, 24 points. Une définition se cite par son point (« article 3, point 5 »).
+- Mesure sur le dev après correction (n = 7, Wilson 95 %) : vecteurs recall@5 7/7 (0,65 à 1,00), MRR 1,00 ; hybride 7/7, MRR 0,93 ; BM25 6/7, MRR 0,64. BM25 ne retrouve toujours pas q004 : la question dit « définit » et l'étiquette dit « définition », deux racines différentes pour la tokenisation actuelle.
+- Sur ce lot, la recherche vectorielle seule fait au moins aussi bien que l'hybride. Avec n = 7 aucune différence n'est établie. La comparaison sérieuse attend le jeu complet.
+- Le plus long passage est la définition 33 (« État membre d'origine », 5 707 caractères) : une seule définition avec ses sous-points.
+- Le rapport du dev d'avant correction (6/7 pour les trois modes) est dans l'historique git (commit d9127b6) ; le fichier du jour a été remplacé.
+- Trois questions validées (q004, q005, q006) avaient un identifiant de passage qui n'existe plus ; leur identifiant a été mis à jour, la question, la réponse et l'extrait sont inchangés.
