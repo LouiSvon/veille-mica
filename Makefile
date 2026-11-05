@@ -3,7 +3,7 @@
 
 PY = backend/.venv/bin/python
 
-.PHONY: setup modeles telecharger verifier ingest serve front test eval-dev
+.PHONY: controle-identite setup modeles telecharger verifier ingest serve front test eval-dev
 
 setup:  ## Dépendances Python (uv) et Node. Ne télécharge aucun modèle.
 	cd backend && uv sync
@@ -35,3 +35,6 @@ test:  ## Tests Python (certains exigent Ollama avec bge-m3 et les textes dans d
 eval-dev:  ## Mesure sur les questions de développement. Le test figé exige --confirmer-test (voir eval/).
 	$(PY) eval/run_retrieval.py
 	$(PY) eval/run_generation.py --modele qwen3.5:9b
+
+controle-identite:  ## Vérifie que l'interface n'imite pas l'identité de l'État et ne nomme aucun tiers
+	$(PY) scripts/controle_identite.py
