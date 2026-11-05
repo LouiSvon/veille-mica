@@ -105,7 +105,7 @@ Liste détaillée et datée : [docs/limites.md](docs/limites.md). L'essentiel :
 ```
 data/sources.yaml     registre des sources (URL, version, date, hash)
 backend/app/          chunking, retrieval, generation (schéma, prompt, contrôles), api (FastAPI)
-backend/tests/        96 tests
+backend/tests/        99 tests
 frontend/             interface Next.js (TypeScript)
 eval/                 questions.jsonl, run_retrieval.py, run_generation.py, calibrer_seuil.py, probe_paraphrases.py, reports/
 scripts/              telecharger.py (téléchargement et vérification des hash)
