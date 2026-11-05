@@ -55,13 +55,13 @@ sources:
     fichier: "eba-gl-2024-11-fr.pdf"
     format: pdf
     langue: fr
-    version: "Version FR_COR (corrigée), à confirmer à la lecture"
-    date_consultation: a_fournir
-    sha256: a_fournir
-    octets: a_fournir
-    volume_mesure: a_fournir
+    version: "Version FR_COR du rapport final du 4 juillet 2024 (PDF créé le 2024-09-26 d'après ses métadonnées)"
+    date_consultation: "2026-11-05"
+    sha256: "954a05eb6f8de3618e34a9dacec7ba16f930202be26426ba023cfa69bd34f25c"
+    octets: 393371
+    volume_mesure: "27 pages, environ 10 660 mots. Paragraphe 10 : application à compter du 30 décembre 2024"
     reutilisation: a_fournir
-    statut: a_telecharger
+    statut: telecharge_et_lu
 
   - id: amf-doc-2024-08
     titre: "Position AMF DOC-2024-08 : orientations de l'ABE sur certains transferts de crypto-actifs"
