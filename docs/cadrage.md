@@ -164,3 +164,13 @@ Prises par Louis le 2026-11-05 (suite) :
 À valider :
 5. Compte PISTE pour Légifrance : à créer par toi, car l'ordonnance est dans le périmètre (la page Légifrance peut aussi être téléchargée à la main).
 6. Texte exact des Q&A ESMA : un téléchargement réel est nécessaire. `robots.txt` d'ESMA non vérifié. Je te donnerai la commande à lancer dans ton terminal.
+
+## Suivi des écarts (2026-11-05, fin de session)
+
+Ce cadrage est une proposition datée. Écarts constatés à la fin de la session, détaillés dans `docs/choix-techniques.md` :
+
+- Modèles de génération : `qwen3.5:9b` et `gemma4:12b-it-qat` (déjà installés) à la place des candidats listés plus haut ; `qwen3.5:9b` retenu sur demande de Louis (simple et économique).
+- Recherche : le mode vectoriel seul est devenu le défaut après mesure ; l'hybride reste disponible.
+- Questions : 42 au lieu de 38, dont 19 déléguées à l'assistant et aucune écrite par Louis.
+- Q&A ESMA : non incluses.
+- Interface : Next.js 16, une page, avertissement permanent.

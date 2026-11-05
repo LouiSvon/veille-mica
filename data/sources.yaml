@@ -128,4 +128,4 @@ sources:
     octets: a_fournir
     volume_mesure: a_fournir
     reutilisation: "robots.txt lu le 2026-11-05 : aucun Crawl-delay, /search/ interdit, pages Q&A non interdites. Conditions de réutilisation : a_fournir"
-    statut: export_manuel_a_faire
+    statut: differe  # export manuel non fait ; voir docs/limites.md

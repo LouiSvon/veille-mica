@@ -58,3 +58,24 @@ Ce ne sont pas des scores : les questions sont proposées par l'assistant et pas
 - Un passage est un article, ou un groupe de blocs si l'article dépasse 3 500 caractères (les articles qui modifient le Code monétaire et financier sont longs). Les passages découpés ne portent pas le numéro de l'alinéa modifié.
 - Le texte des articles est celui d'une ordonnance de modification : il dit « le 2° est supprimé », pas le droit en vigueur résultant. Une réponse tirée de ces passages ne donne pas l'état du Code monétaire et financier aujourd'hui.
 - Sur le dev (7 questions répondables), l'ajout de ces 68 passages ne change aucun rang : même recall et même MRR pour les trois modes.
+
+## Q&A de l'ESMA : non incluses dans cette version (2026-11-05)
+
+- La décision initiale était de les inclure (en anglais, non contraignantes, avec mention affichée).
+- L'outil de recherche de l'ESMA est une application web sans liste téléchargeable : l'accès retenu était un export Excel manuel, à faire par Louis dans son navigateur. Cet export n'a pas été fait pendant son absence ; automatiser l'exploration des pages était écarté (conditions de réutilisation et `robots.txt` non vérifiés au-delà de `/search/`).
+- Conséquence : la note de la position AMF qui cite la Q&A ESMA_QA_2295 reste sans sa source. Aucune question du jeu ne s'appuie sur une Q&A. À faire : exporter, découper, ajouter des questions.
+
+## Évaluation (2026-11-05)
+
+- Aucune question n'a été écrite à la main par l'auteur du dépôt. 23 ont été validées une par une ; 19 sont des questions déléguées (statut `delegue`).
+- Le test figé a été lu trois fois : recherche en trois modes, génération en hybride (configuration fixée avant), génération en vectoriel (exploratoire). La configuration livrée n'est donc pas mesurée proprement.
+- La notation de justesse du contenu est celle de l'assistant, non vérifiée par Louis.
+- Les 10 reformulations de la sonde sont écrites par l'assistant ; la sonde sert à documenter une sensibilité, pas à mesurer une performance.
+
+## Génération (2026-11-05)
+
+- La réponse peut être fausse bien qu'elle cite un passage réel (q035, q040). Le système affiche donc le texte cité à côté de la réponse.
+- Deux contrôles n'existent pas : fidélité de chaque phrase au passage, et vérification des nombres écrits en lettres.
+- Le seuil de refus (0,59) est dérivé de 7 points du dev. Il refuse à tort environ 2 reformulations correctes sur 10 ; un seuil plus bas a laissé passer une réponse non fondée.
+- Les cosinus de bge-m3 sont compressés entre environ 0,5 et 0,8 : la séparation entre répondable et hors corpus par un seuil est fragile.
+- Latence mesurée : environ 2 à 7 s par question appelant le modèle (qwen3.5:9b), sur un Mac M5 Pro avec 24 Go. Non mesurée sur une autre machine.
