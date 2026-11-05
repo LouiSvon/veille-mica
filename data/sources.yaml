@@ -69,7 +69,10 @@ sources:
     niveau: extension_1
     contraignant: a_fournir
     url_officielle: "https://www.amf-france.org/fr/reglementation/doctrine/doc-2024-08"
-    url_telechargement: "https://www.amf-france.org/sites/institutionnel/files/pdf/74734/fr/Orientations_de_l%27EBA_sur_les_exigences_en_matiere_d%27information_concernant_certains_transferts_de_crypto-actifs.pdf"
+    # Le PDF /pdf/74734/fr/ est une impression de la page web, générée à la demande : 3 pages, 350 mots
+    # (résumé seulement) et un hash différent à chaque téléchargement. Écarté (constaté le 2026-11-05).
+    # Le texte de la position est dans le lien « Télécharger la doctrine » (dossier /private/), URL française à fournir.
+    url_telechargement: a_fournir
     en_tetes: {}
     fichier: "amf-doc-2024-08-fr.pdf"
     format: pdf
