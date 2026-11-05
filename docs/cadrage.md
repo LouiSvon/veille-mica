@@ -82,11 +82,12 @@ Toutes les heures sont des **estimations non mesurées**. Les heures de Louis so
 | F | Exécution, intervalles de Wilson, analyse d'erreurs une par une | scores issus du script, non d'une estimation | 3 |
 | G | API FastAPI et interface Next.js minimale, avertissement partout | appel réel, capture de l'interface | 4 |
 | H | README, `choix-techniques.md`, `limites.md`, Makefile, licence, écart estimation/réel | relecture à froid | 3 |
-| | **Total moi** | | **29** |
+| A2 | Ajout des Q&A ESMA (décision du 2026-11-05) : récupération du texte exact (la lecture web résume, un téléchargement réel est nécessaire), passages marqués « anglais, non contraignant », affichage de la mention dans chaque réponse qui les cite | un passage Q&A cité s'affiche en anglais avec sa mention | 3 |
+| | **Total moi** | | **32** |
 | | **Total Louis** : écrire 15 questions avec passage source (3 h), valider les autres (2 h) | | **5** |
 
-Le total de 29 h est au bord de ta fenêtre, sans marge, et il n'inclut pas les lots 0 et 1 déjà faits. Il est probable que le réel dépasse 30 h. Coupes, dans cet ordre si nous dérapons :
-1. Pas de reranking (il reste dans la liste des pistes, mesuré seulement si le temps le permet).
+Le total de 32 h dépasse déjà ta fenêtre de 30 h, et il n'inclut pas les lots 0 et 1 déjà faits. Avec l'ajout des Q&A ESMA, il faut couper au moins 2 h. Coupes, dans cet ordre :
+1. Pas de reranking (décidé le 2026-11-05 : aucun au départ ; il est mesuré seulement si le temps le permet).
 2. Génération évaluée seulement sur la meilleure configuration de recherche ; les 3 configurations restent comparées sur recall@k et MRR.
 3. Pas de LLM juge (la notation est manuelle de toute façon).
 4. Extension limitée aux priorités 1 et 2.
@@ -148,10 +149,16 @@ Machine (mesurée) : Apple M5 Pro, 24 Gio de mémoire, Ollama 0.35.0, 527 Gio li
 - Le contenu de l'API Ollama sur le reranking et les vecteurs creux repose sur une page de documentation et une recherche : absence non prouvée.
 - Aucune donnée n'a été inventée. Tous les chiffres de ce document sont soit cités avec leur source, soit marqués non vérifié ou à mesurer.
 
-## 6. Décisions à valider
+## 6. Décisions
 
-1. Périmètre : noyau + AMF DOC-2024-08 + ordonnance 2024-936, extensions après premiers scores ; Q&A ESMA exclues ou incluses.
-2. Reranking : aucun au départ, ou cross-encoder hors Ollama.
+Prises par Louis le 2026-11-05 :
+1. Périmètre : noyau + AMF DOC-2024-08 + ordonnance 2024-936 + Q&A ESMA (en anglais, non contraignantes, mention affichée). DORA, AMLR et le reste après les premiers scores.
+2. Reranking : aucun au départ.
+
+Conséquence de la décision 1 : la règle « versions françaises officielles » a une exception documentée pour les Q&A. L'assistant répond en français et cite le passage anglais tel quel, sans traduction affichée comme officielle. Risque : la récupération multilingue (question en français, passage en anglais) est à mesurer.
+
+À valider :
 3. Recherche : implémentation maison (recommandée) ou LanceDB.
 4. Licence : MIT.
-5. Compte PISTE pour Légifrance : à créer par toi si l'ordonnance et le Code monétaire et financier entrent dans le périmètre.
+5. Compte PISTE pour Légifrance : à créer par toi, car l'ordonnance est dans le périmètre (la page Légifrance peut aussi être téléchargée à la main).
+6. Texte exact des Q&A ESMA : un téléchargement réel est nécessaire. `robots.txt` d'ESMA non vérifié. Je te donnerai la commande à lancer dans ton terminal.
