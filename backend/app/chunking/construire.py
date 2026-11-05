@@ -13,6 +13,7 @@ from pathlib import Path
 import yaml
 
 from app.chunking.decouper import decouper as decouper_xhtml
+from app.chunking.legifrance import decouper_impression_legifrance
 from app.chunking.pdf import decouper_document_court, decouper_orientations, extraire_pages
 
 RACINE = Path(__file__).resolve().parents[3]
@@ -21,7 +22,8 @@ BRUT = RACINE / "data" / "raw"
 SORTIE = RACINE / "data" / "processed" / "chunks.jsonl"
 
 # Prefixe de l'en-tête courant à retirer de chaque page, par source (propre à la mise en page de chaque PDF).
-ENTETES = {"eba-gl-2024-11": "ORIENTATIONS SUR LES EXIGENCES", "amf-doc-2024-08": "Position AMF - DOC-2024-08"}
+ENTETES = {"eba-gl-2024-11": "ORIENTATIONS SUR LES EXIGENCES", "amf-doc-2024-08": "Position AMF - DOC-2024-08",
+           "ordonnance-2024-936": "Ordonnance n° 2024-936 du 15 octobre 2024 relative aux marchés de c..."}
 STATUTS_PRETS = {"telecharge_et_lu"}
 
 
@@ -40,6 +42,8 @@ def passages_de(source: dict, brut: Path = BRUT) -> list[dict]:
     sid, url = source["id"], source["url_officielle"]
     if source["format"] == "xhtml":
         res = decouper_xhtml(chemin, sid, url)
+    elif sid == "ordonnance-2024-936":
+        res = decouper_impression_legifrance(extraire_pages(chemin), sid, url, ENTETES[sid])
     elif sid == "eba-gl-2024-11":
         res = decouper_orientations(extraire_pages(chemin), sid, url, ENTETES[sid])
     elif source["format"] == "pdf":

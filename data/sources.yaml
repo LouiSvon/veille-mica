@@ -97,16 +97,16 @@ sources:
     fichier: "ordonnance-2024-936-fr.pdf"
     format: pdf
     langue: fr
-    version: a_fournir
-    date_consultation: a_fournir
-    sha256: a_fournir
-    octets: a_fournir
-    volume_mesure: a_fournir
+    version: "VERSION INITIALE, JORF n°0247 du 17 octobre 2024, texte n°17, NOR ECOT2415927R. Impression Firefox de la page Légifrance faite par Louis le 2026-11-05 à 16:11 (71 pages) : ce n'est pas l'extrait authentifié du Journal officiel"
+    date_consultation: "2026-11-05"
+    sha256: "15d26bca954949aa1f7343726ad8f2667710024f65dd0efa6ca79d72f33fbf3e"
+    octets: 774200
+    volume_mesure: "50 articles (Titre I : 1 à 33, Titre II outre-mer : 34 à 48, Titre III : 49 et 50), environ 22 800 mots"
     reutilisation: "Légifrance : licence ouverte 2.0 via l'API PISTE (compte à créer par Louis)"
-    # Constaté le 2026-11-05 : le téléchargement par script répond HTTP 403. Pas de contournement.
-    # Accès retenu : PDF téléchargé à la main depuis la page (lien « Extrait du Journal officiel électronique authentifié »),
-    # déposé dans data/raw/ ; ou API PISTE avec un compte créé par Louis.
-    statut: telechargement_manuel_a_faire
+    # Le téléchargement par script répond HTTP 403 (constaté le 2026-11-05), sans contournement.
+    # Source reproductible à la main : ouvrir la page url_officielle et l'imprimer en PDF (Firefox), ou API PISTE avec un compte.
+    # Le hash ci-dessus est celui de cette impression précise : une autre impression donnera un autre hash.
+    statut: telecharge_et_lu
 
   - id: esma-qa-mica
     titre: "ESMA : questions-réponses sur MiCA (Interactive Single Rulebook)"

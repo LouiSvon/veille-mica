@@ -6,7 +6,7 @@
   "modele_embedding": "bge-m3",
   "rrf_k": 60,
   "candidats": 50,
-  "empreinte_corpus": "2df49e132b50110c505e05b036b234b39f2435aa0af7daa027da39533de456b3",
+  "empreinte_corpus": "5c524d25849fbdd76935ae4035ed12689c933f20cbba7f985ae4049c44330152",
   "validations": {
     "valide": 7
   },

@@ -10,7 +10,7 @@ Ceci n'est pas un conseil juridique. Ce document liste les limites constatées, 
 - Les textes de MiCA et du règlement 2023/1113 sont ceux du Journal officiel, non consolidés. Une version consolidée de MiCA existe (vue en recherche, `02023R1114-20240109`) : les modifications postérieures au texte publié ne sont pas prises en compte. Écart exact : à mesurer.
 - Le droit évolue : l'assistant doit afficher la date de consultation et la version de chaque source citée.
 - Les Q&A de l'ESMA seront en anglais et non contraignantes (décision du 2026-11-05). Elles ne sont pas encore dans le corpus.
-- Ordonnance 2024-936 : téléchargement manuel du PDF « Extrait du JO » nécessaire (Légifrance répond HTTP 403 aux scripts). Pas encore dans le corpus.
+- Ordonnance 2024-936 : Légifrance répond HTTP 403 aux scripts, y compris depuis la page ouverte dans un navigateur automatisé. Le corpus contient l'impression Firefox de la page « VERSION INITIALE » faite à la main par Louis le 2026-11-05 (71 pages), pas l'extrait authentifié du Journal officiel. Son hash est celui de cette impression : une autre impression donnera un autre hash. Seule la version initiale est couverte (pas les versions consolidées du Code monétaire et financier qu'elle modifie).
 - La stabilité du hash de la position AMF a été vérifiée sur 3 téléchargements rapprochés (quelques secondes), pas sur plusieurs jours.
 
 ## Découpage (constaté le 2026-11-05)
@@ -51,3 +51,10 @@ Ce ne sont pas des scores : les questions sont proposées par l'assistant et pas
 - Le plus long passage est la définition 33 (« État membre d'origine », 5 707 caractères) : une seule définition avec ses sous-points.
 - Le rapport du dev d'avant correction (6/7 pour les trois modes) est dans l'historique git (commit d9127b6) ; le fichier du jour a été remplacé.
 - Trois questions validées (q004, q005, q006) avaient un identifiant de passage qui n'existe plus ; leur identifiant a été mis à jour, la question, la réponse et l'extrait sont inchangés.
+
+## Ordonnance 2024-936 ajoutée au corpus (2026-11-05)
+
+- 50 articles contigus (Titre I : 1 à 33 ; Titre II outre-mer : 34 à 48 ; Titre III : 49 et 50), 68 passages avec les visas. Aucune ligne de contenu perdue, avec un test positif.
+- Un passage est un article, ou un groupe de blocs si l'article dépasse 3 500 caractères (les articles qui modifient le Code monétaire et financier sont longs). Les passages découpés ne portent pas le numéro de l'alinéa modifié.
+- Le texte des articles est celui d'une ordonnance de modification : il dit « le 2° est supprimé », pas le droit en vigueur résultant. Une réponse tirée de ces passages ne donne pas l'état du Code monétaire et financier aujourd'hui.
+- Sur le dev (7 questions répondables), l'ajout de ces 68 passages ne change aucun rang : même recall et même MRR pour les trois modes.

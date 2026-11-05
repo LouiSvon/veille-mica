@@ -9,7 +9,7 @@ from app.chunking import construire as c
 from app.chunking.pdf import _separer_page, extraire_pages, decouper_orientations, normaliser
 
 RAW = c.BRUT
-PRET = all((RAW / f).exists() for f in ("mica-2023-1114-fr.xhtml", "tfr-2023-1113-fr.xhtml", "eba-gl-2024-11-fr.pdf", "amf-doc-2024-08-fr.pdf"))
+PRET = all((RAW / f).exists() for f in ("mica-2023-1114-fr.xhtml", "tfr-2023-1113-fr.xhtml", "eba-gl-2024-11-fr.pdf", "amf-doc-2024-08-fr.pdf", "ordonnance-2024-936-fr.pdf"))
 absent = pytest.mark.skipif(not PRET, reason="textes bruts absents (data/raw non versionné)")
 
 
@@ -17,7 +17,7 @@ absent = pytest.mark.skipif(not PRET, reason="textes bruts absents (data/raw non
 def test_construction_complete_et_metadonnees(tmp_path):
     sortie = tmp_path / "chunks.jsonl"
     comptes = c.construire(sortie=sortie)
-    assert set(comptes) == {"mica", "tfr", "eba-gl-2024-11", "amf-doc-2024-08"}
+    assert set(comptes) == {"mica", "tfr", "eba-gl-2024-11", "amf-doc-2024-08", "ordonnance-2024-936"}
     lignes = [json.loads(l) for l in sortie.read_text(encoding="utf-8").splitlines()]
     assert len(lignes) == sum(comptes.values())
     ids = [l["chunk_id"] for l in lignes]
