@@ -60,3 +60,33 @@ def test_registre_coherent():
     for s in sources:
         if s["statut"] == "telecharge_et_lu":
             assert len(s["sha256"]) == 64 and s["date_consultation"] != "a_fournir"
+
+
+def test_un_fichier_present_et_identique_n_est_pas_retelecharge(tmp_path):
+    """« Télécharge ce qui manque » : la source contient un autre contenu ; s'il était retéléchargé, le fichier local changerait."""
+    local = b"contenu local"
+    s = source(tmp_path, b"contenu distant different", hashlib.sha256(local).hexdigest())
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "x.bin").write_bytes(local)
+    assert "non retéléchargé" in tel.traiter(s, raw, verifier_seulement=False)
+    assert (raw / "x.bin").read_bytes() == local
+
+
+def test_un_fichier_present_mais_different_est_retelecharge(tmp_path):
+    local, distant = b"contenu local modifie", b"contenu distant"
+    s = source(tmp_path, distant, hashlib.sha256(distant).hexdigest())
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "x.bin").write_bytes(local)
+    assert "identique" in tel.traiter(s, raw, verifier_seulement=False)
+    assert (raw / "x.bin").read_bytes() == distant
+
+
+def test_forcer_retelecharge_meme_un_fichier_identique(tmp_path):
+    local = b"contenu"
+    s = source(tmp_path, b"contenu", hashlib.sha256(local).hexdigest())
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "x.bin").write_bytes(local)
+    assert "non retéléchargé" not in tel.traiter(s, raw, verifier_seulement=False, forcer=True)

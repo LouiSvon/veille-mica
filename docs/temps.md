@@ -7,9 +7,8 @@ Les durées ne sont pas mesurées par un chronomètre : seuls les horodatages de
 
 ## Ce qui est mesuré
 
-- Premier commit : 2026-11-05 15:24 (+0100). Le cadrage, la recherche des sources et les premiers contrôles ont précédé ce commit.
-- Dernier commit de code et de documentation de la session : voir `git log` (même journée, en fin d'après-midi).
-- Soit environ 1 h 30 à 2 h entre le premier commit et la fin de la session, pendant laquelle l'assistant a travaillé seul environ 2 h pendant l'absence de Louis. Cette durée ne comprend pas la phase de cadrage antérieure.
+- Premier commit : 2026-11-05 15:24 (+0100), dernier commit de la session : voir `git log --format=%ci`. Le cadrage, la recherche des sources et les premiers contrôles ont précédé le premier commit et ne sont pas comptés.
+- Ces horodatages ne mesurent pas l'effort de lecture, de recherche ni de validation, ni le temps de Louis.
 
 ## Estimation du cadrage (assistant) et réalisé
 

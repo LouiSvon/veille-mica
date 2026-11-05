@@ -103,7 +103,7 @@ def main() -> int:
         "detail": detail,
     }
     nom = a.modele.replace(":", "-").replace("/", "-")
-    sortie = RACINE / "eval/reports" / f"generation-{rapport['date']}-{a.split}-{nom}-{a.mode}.json"
+    sortie = RACINE / "eval/reports" / f"generation-{rapport['date']}-{a.split}-{nom}-{a.mode}-seuil{a.seuil}.json"
     sortie.write_text(json.dumps(rapport, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("\nRésumé :")
     for statut, v in resume.items():

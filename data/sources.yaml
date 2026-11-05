@@ -92,7 +92,8 @@ sources:
     niveau: extension_1
     contraignant: true
     url_officielle: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050353747"
-    url_telechargement: "https://www.legifrance.gouv.fr/download/pdf?id=fz5LPyuiPupwqXF0Gqhf9lUF3j2KuUjufyTBLOMrJTk="
+    # Téléchargement automatique refusé par Légifrance (HTTP 403, constaté le 2026-11-05) : étape manuelle, voir le README.
+    url_telechargement: a_fournir
     en_tetes: {}
     fichier: "ordonnance-2024-936-fr.pdf"
     format: pdf

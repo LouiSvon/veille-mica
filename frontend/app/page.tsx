@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { API_URL, LIBELLES_MOTIF, type Reponse } from "../lib/types";
 
 const EXEMPLES = [
-  "Jusqu'à quelle date la période transitoire permet-elle de continuer sans agrément ?",
+  "Jusqu'à quand les prestataires qui fournissaient déjà leurs services avant le 30 décembre 2024 peuvent-ils continuer sans agrément MiCA ?",
   "Comment MiCA définit-il un crypto-actif ?",
   "À partir de quelle date les orientations de l'ABE sur la travel rule s'appliquent-elles ?",
 ];
@@ -96,7 +96,7 @@ export default function Page() {
                   <li key={c.chunk_id}>
                     <details>
                       <summary>
-                        <span className="ref">{c.reference}</span> — {c.source_titre}
+                        <span className="ref">{c.reference}</span> : {c.source_titre}
                         {c.contraignant !== "oui" && <span className="tag">{c.contraignant === "non" ? "non contraignant" : "statut non vérifié"}</span>}
                       </summary>
                       <blockquote>{c.texte}</blockquote>

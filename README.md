@@ -61,7 +61,7 @@ Détails et alternatives : [docs/choix-techniques.md](docs/choix-techniques.md).
 
 ## Évaluation et résultats mesurés
 
-42 questions en JSONL ([eval/questions.jsonl](eval/questions.jsonl)), chacune avec des extraits de référence **vérifiés mot pour mot par un test** : 15 pour le réglage (« dev »), 27 pour un test mis de côté. 10 sont hors corpus ou des pièges (texte inexistant, demande d'avis sur un cas particulier). Les règles de réussite ont été écrites avant les premières exécutions : [docs/regles-notation.md](docs/regles-notation.md). Les chiffres viennent des scripts `eval/`, rapports datés dans `eval/reports/`. Les effectifs sont petits : l'intervalle de Wilson à 95 % est donné.
+42 questions en JSONL ([eval/questions.jsonl](eval/questions.jsonl)), chacune avec des extraits de référence **vérifiés mot pour mot par un test** : 15 pour le réglage (« dev »), 27 pour un test mis de côté. 12 ne sont pas répondables : 6 hors corpus et 6 pièges (texte inexistant, demande d'avis sur un cas particulier), dont 8 dans le dev et 4 dans le test. Les règles de réussite ont été écrites avant les premières exécutions : [docs/regles-notation.md](docs/regles-notation.md). Les chiffres viennent des scripts `eval/`, rapports datés dans `eval/reports/`. Les effectifs sont petits : l'intervalle de Wilson à 95 % est donné.
 
 ### Recherche (test, 23 questions répondables : le bon passage est-il dans les 5 premiers ?)
 
