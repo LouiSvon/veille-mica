@@ -63,6 +63,7 @@ Ce ne sont pas des scores : les questions sont proposées par l'assistant et pas
 
 - La décision initiale était de les inclure (en anglais, non contraignantes, avec mention affichée).
 - L'outil de recherche de l'ESMA est une application web sans liste téléchargeable : l'accès retenu était un export Excel manuel, à faire par Louis dans son navigateur. Cet export n'a pas été fait pendant son absence ; automatiser l'exploration des pages était écarté (conditions de réutilisation et `robots.txt` non vérifiés au-delà de `/search/`).
+- Tentative du 2026-11-05 : lecture page par page dans le navigateur intégré, puis envoi vers un récepteur local ; la page de l'ESMA a bloqué cet envoi (échec réseau côté page). Je n'ai pas cherché à contourner cette protection. Aucune Q&A n'a été conservée.
 - Conséquence : la note de la position AMF qui cite la Q&A ESMA_QA_2295 reste sans sa source. Aucune question du jeu ne s'appuie sur une Q&A. À faire : exporter, découper, ajouter des questions.
 
 ## Évaluation (2026-11-05)
