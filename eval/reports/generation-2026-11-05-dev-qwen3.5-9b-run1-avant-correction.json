@@ -1,0 +1,545 @@
+{
+  "date": "2026-11-05",
+  "split": "dev",
+  "modele": "qwen3.5:9b",
+  "mode_recherche": "hybride",
+  "seuil_cosinus": 0.59,
+  "num_ctx": 16384,
+  "seed": 7,
+  "think": false,
+  "n_questions": 13,
+  "resume_par_statut": {
+    "repondable": {
+      "reussites": 7,
+      "n": 7,
+      "wilson_95": [
+        0.646,
+        1.0
+      ]
+    },
+    "hors_corpus": {
+      "reussites": 3,
+      "n": 4,
+      "wilson_95": [
+        0.301,
+        0.954
+      ]
+    },
+    "piege": {
+      "reussites": 2,
+      "n": 2,
+      "wilson_95": [
+        0.342,
+        1.0
+      ]
+    }
+  },
+  "refus_par_couche_et_motif": {
+    "modele/hors_corpus": 2,
+    "verification/echec_verification": 1,
+    "retrieval/hors_corpus": 3
+  },
+  "note": "Justesse du contenu non notée ici. Toute note de justesse de l'assistant est non vérifiée par Louis.",
+  "detail": [
+    {
+      "id": "q001",
+      "statut": "repondable",
+      "question": "Quelles informations sur l'initiateur doivent accompagner un transfert de crypto-actifs ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les informations requises incluent le nom, l'adresse de registre distribué ou le numéro de compte de crypto-actifs, l'adresse avec le pays, le numéro de document d'identité, la date et le lieu de naissance, ainsi que l'identifiant officiel équivalent si fourni. Ces données doivent accompagner le transfert selon l'article 14, paragraphe 1 du règlement (UE) 2023/1113.",
+      "citations": [
+        "tfr-art-14-p1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Selon l'article 14, paragraphe 1, du règlement 2023/1113 : le nom de l'initiateur ; son adresse de registre distribué (et son numéro de compte de crypto-actifs s'il existe) ou, hors DLT, son numéro de compte de crypto-actifs ; son adresse (avec le pays, le numéro du document d'identité officiel et le numéro d'identification de client, ou la date et le lieu de naissance) ; et, s'il est fourni, l'IEJ ou un identifiant officiel équivalent.",
+      "validation_question": "valide",
+      "duree_s": 20.3,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 19.76001473938413,
+          "cosinus_top1": 0.8066027164459229
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "tfr-art-14-p1",
+          "tfr-art-19",
+          "tfr-art-17",
+          "tfr-art-14-p5",
+          "eba-gl-2024-11-par-12"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2026,
+        "eval_count": 134,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q002",
+      "statut": "repondable",
+      "question": "Une personne peut-elle fournir des services sur crypto-actifs dans l'Union sans être agréée ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Non, une personne ne peut pas fournir des services sur crypto-actifs dans l'Union sans être agréée, sauf si elle est déjà autorisée à fournir ces services en tant qu'établissement de crédit, dépositaire central de titres, entreprise d'investissement, opérateur de marché, établissement de monnaie électronique, société de gestion d'OPCVM ou gestionnaire de fonds d'investissement alternatifs.",
+      "citations": [
+        "mica-art-59"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Non en principe : l'article 59, paragraphe 1, de MiCA réserve ces services aux personnes agréées comme prestataires de services sur crypto-actifs (article 63) et à certaines entités déjà autorisées (établissements de crédit, dépositaires centraux de titres, entreprises d'investissement, opérateurs de marché, établissements de monnaie électronique, sociétés de gestion d'OPCVM, gestionnaires de FIA) conformément à l'article 60.",
+      "validation_question": "valide",
+      "duree_s": 5.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 15.150957115298525,
+          "cosinus_top1": 0.7708102464675903
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-59",
+          "mica-art-60-p3",
+          "mica-art-62-p1",
+          "mica-art-16",
+          "mica-art-65"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3243,
+        "eval_count": 124,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q004",
+      "statut": "repondable",
+      "question": "Comment MiCA définit-il un crypto-actif ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "MiCA définit un crypto-actif comme une représentation numérique d'une valeur ou d'un droit transférable et stockable de manière électronique, via la technologie des registres distribués ou similaire. Cette définition figure dans l'article 3, point 5 du règlement (UE) 2023/1114.",
+      "citations": [
+        "mica-art-3-p1-pt5"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Une représentation numérique d'une valeur ou d'un droit pouvant être transférée et stockée de manière électronique, au moyen de la technologie des registres distribués ou d'une technologie similaire (article 3, point 5).",
+      "validation_question": "valide",
+      "duree_s": 3.6,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 6.270690161517225,
+          "cosinus_top1": 0.7319660782814026
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-3-p1-pt22",
+          "mica-art-3-p1-pt5",
+          "mica-art-119-p6",
+          "mica-art-3-p1-pt20",
+          "eba-gl-2024-11-par-15"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1218,
+        "eval_count": 107,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q007",
+      "statut": "repondable",
+      "question": "À partir de quelle date MiCA est-il applicable ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Le règlement MiCA est applicable à partir du 30 décembre 2024, selon l'article 149, paragraphe 2. Toutefois, les titres III et IV sont applicables dès le 30 juin 2024, par dérogation à l'article 149, paragraphe 3. Certains articles spécifiques entrent en vigueur dès le 29 juin 2023, comme indiqué à l'article 149, paragraphe 4.",
+      "citations": [
+        "mica-art-149"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "À partir du 30 décembre 2024 de manière générale ; par dérogation, les titres III et IV (jetons se référant à un ou des actifs et jetons de monnaie électronique) sont applicables à partir du 30 juin 2024 (article 149).",
+      "validation_question": "valide",
+      "duree_s": 5.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 8.92885241682115,
+          "cosinus_top1": 0.6449793577194214
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-149",
+          "mica-art-143",
+          "mica-art-83-p4",
+          "mica-art-41-p4",
+          "mica-art-63-p9"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2753,
+        "eval_count": 144,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q008",
+      "statut": "repondable",
+      "question": "Jusqu'à quand les prestataires qui fournissaient déjà leurs services avant le 30 décembre 2024 peuvent-ils continuer sans agrément MiCA ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les prestataires de services sur crypto-actifs qui fournissaient leurs services avant le 30 décembre 2024 peuvent continuer à le faire jusqu'au 1er juillet 2026 ou jusqu'à ce qu'ils se voient octroyer ou refuser un agrément, l'événement survenant en premier lieu étant retenu. Les États membres peuvent décider de ne pas appliquer ce régime transitoire ou de réduire sa durée s'ils considèrent que leur cadre réglementaire national applicable avant le 30 décembre 2024 est moins strict que le présent règlement. Cette possibilité de ne pas appliquer le régime transitoire ou de réduire sa durée est soumise à une notification aux autorités européennes au plus tard le 30 juin 2024.",
+      "citations": [
+        "mica-art-143"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Jusqu'au 1er juillet 2026 ou jusqu'à ce qu'ils se voient octroyer ou refuser un agrément en vertu de l'article 63, l'événement survenant en premier lieu étant retenu (article 143, paragraphe 3). Les États membres peuvent décider de ne pas appliquer ce régime transitoire ou d'en réduire la durée.",
+      "validation_question": "valide",
+      "duree_s": 4.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 40.73826336675406,
+          "cosinus_top1": 0.6256317496299744
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-143",
+          "mica-art-62-p4",
+          "mica-art-64-p2",
+          "ordonnance-2024-936-art-18-s2",
+          "mica-art-64-p5"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3040,
+        "eval_count": 205,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q010",
+      "statut": "repondable",
+      "question": "À partir de quelle date les orientations de l'ABE sur la travel rule s'appliquent-elles ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les orientations de l'ABE sur les exigences d'information relatives aux transferts de fonds et de certains crypto-actifs s'appliquent à compter du 30 décembre 2024.",
+      "citations": [
+        "eba-gl-2024-11-par-10"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "À compter du 30 décembre 2024 (orientations EBA/GL/2024/11, paragraphe 10).",
+      "validation_question": "valide",
+      "duree_s": 3.1,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 21.305359731757513,
+          "cosinus_top1": 0.7198565006256104
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-10",
+          "eba-gl-2024-11-par-3",
+          "eba-gl-2024-11-par-2",
+          "eba-gl-2024-11-p12-notes",
+          "eba-gl-2024-11-p5-notes"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1197,
+        "eval_count": 83,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q016",
+      "statut": "repondable",
+      "question": "À partir de quelle date les orientations de l'ABE sur la travel rule s'appliquent-elles, et l'AMF les applique-t-elle ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les orientations de l'ABE sur la travel rule s'appliquent à compter du 30 décembre 2024, selon les passages P1 et P3. L'AMF applique ces orientations dans le cadre de sa supervision des prestataires de services sur crypto-actifs relevant de sa compétence, comme indiqué dans le passage P3.",
+      "citations": [
+        "eba-gl-2024-11-par-10",
+        "amf-doc-2024-08-bloc-1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Les orientations s'appliquent à compter du 30 décembre 2024 (EBA/GL/2024/11, paragraphe 10). L'AMF les applique dans le cadre de la supervision des prestataires de services sur crypto-actifs relevant de sa compétence (position DOC-2024-08), et indique elle aussi qu'elles sont applicables à compter du 30 décembre 2024.",
+      "validation_question": "valide",
+      "duree_s": 3.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 21.305359731757513,
+          "cosinus_top1": 0.6839185953140259
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-10",
+          "eba-gl-2024-11-par-3",
+          "amf-doc-2024-08-bloc-1",
+          "eba-gl-2024-11-p5-notes",
+          "eba-gl-2024-11-par-2"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1841,
+        "eval_count": 118,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q018",
+      "statut": "hors_corpus",
+      "question": "Quel est le taux d'imposition des plus-values sur crypto-actifs pour un particulier en France ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "modele",
+      "reponse": "Les passages fournis ne contiennent aucune information sur le taux d'imposition des plus-values sur crypto-actifs pour les particuliers en France. Les textes cités traitent uniquement de l'agrément des prestataires, des obligations d'information et des contributions financières pour les professionnels.",
+      "citations": [],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Refus : la fiscalité n'est pas dans le corpus (aucun texte fiscal).",
+      "validation_question": "valide",
+      "duree_s": 5.8,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 8.997746098060688,
+          "cosinus_top1": 0.5993494391441345
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "ordonnance-2024-936-art-11",
+          "ordonnance-2024-936-art-22-s1",
+          "eba-gl-2024-11-par-82",
+          "ordonnance-2024-936-art-18-s4",
+          "mica-art-59"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3464,
+        "eval_count": 95,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q019",
+      "statut": "hors_corpus",
+      "question": "Quelle est la date d'application du règlement AMLR (UE) 2024/1624 ?",
+      "reussite": false,
+      "raison": "attendu un refus justifié, obtenu refuser/echec_verification",
+      "decision": "refuser",
+      "motif": "echec_verification",
+      "couche_refus": "verification",
+      "reponse": "La réponse produite n'a pas passé les contrôles du système (citation ou nombres non retrouvés dans les passages) : je ne la donne pas.",
+      "citations": [],
+      "controle_nombres": {
+        "ok": false,
+        "inconnus": [
+          "1624",
+          "2024"
+        ]
+      },
+      "attendu": "Refus : le règlement AMLR n'est pas dans le corpus de la version 1, même si sa date est connue par ailleurs. L'assistant ne doit pas répondre sans source dans le corpus.",
+      "validation_question": "valide",
+      "duree_s": 6.1,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 9.654688498615624,
+          "cosinus_top1": 0.5943453907966614
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "ordonnance-2024-936-visas",
+          "eba-gl-2024-11-par-10",
+          "ordonnance-2024-936-art-18-s4",
+          "mica-art-143",
+          "ordonnance-2024-936-art-18-s2"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 4151,
+        "eval_count": 72,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1,
+        "reponse_rejetee": "Les passages fournis ne contiennent aucune information sur le règlement AMLR (UE) 2024/1624 ni sur sa date d'application.",
+        "motif_modele": "hors_corpus"
+      }
+    },
+    {
+      "id": "q022",
+      "statut": "piege",
+      "question": "Que dit l'article 200 de MiCA ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "retrieval",
+      "reponse": "Cette question ne porte pas sur un sujet couvert par les textes du corpus : je ne peux pas y répondre sans inventer.",
+      "citations": [],
+      "controle_nombres": {},
+      "attendu": "Refus : MiCA compte 149 articles (mesuré sur le texte du JO) ; l'article 200 n'existe pas.",
+      "validation_question": "valide",
+      "duree_s": 0.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 9.043178611314445,
+          "cosinus_top1": 0.5251122713088989
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-23",
+          "mica-art-111-p2",
+          "mica-art-111-p5",
+          "ordonnance-2024-936-art-22-s5",
+          "mica-art-91-p1"
+        ]
+      }
+    },
+    {
+      "id": "q037",
+      "statut": "hors_corpus",
+      "question": "Quelles sanctions pénales le code monétaire et financier prévoit-il pour l'exercice illégal de l'activité de prestataire de services sur crypto-actifs ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "modele",
+      "reponse": "Les passages fournis ne contiennent aucune information sur les sanctions pénales prévues par le code monétaire et financier pour l'exercice illégal de l'activité de prestataire de services sur crypto-actifs. Les textes cités se concentrent sur les exigences d'admission, les sanctions administratives et disciplinaires, ainsi que sur les obligations de gouvernance, sans mentionner les peines pénales applicables à l'exercice illégal de cette activité.",
+      "citations": [],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Refus : le code monétaire et financier n'est pas dans le corpus de la version 1 (la position AMF n'en cite que quelques articles de référence).",
+      "validation_question": "delegue",
+      "duree_s": 7.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 14.953853212334653,
+          "cosinus_top1": 0.6956352591514587
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-62-p3",
+          "mica-art-62-p2-s1",
+          "tfr-art-28-p2",
+          "ordonnance-2024-936-art-22-s7",
+          "ordonnance-2024-936-art-21-s4"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3681,
+        "eval_count": 136,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q038",
+      "statut": "piege",
+      "question": "Que dit le considérant 12 de MiCA ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "retrieval",
+      "reponse": "Cette question ne porte pas sur un sujet couvert par les textes du corpus : je ne peux pas y répondre sans inventer.",
+      "citations": [],
+      "controle_nombres": {},
+      "attendu": "Refus : le corpus contient les articles et les annexes de MiCA, pas les considérants. L'assistant ne doit pas reconstituer un considérant à partir d'articles voisins.",
+      "validation_question": "delegue",
+      "duree_s": 0.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 4.261204437975739,
+          "cosinus_top1": 0.5023784637451172
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-3-p1-pt12",
+          "mica-art-51-p12",
+          "mica-art-81-p12",
+          "mica-art-34-p12",
+          "mica-art-134-p11"
+        ]
+      }
+    },
+    {
+      "id": "q039",
+      "statut": "hors_corpus",
+      "question": "Les orientations de l'ESMA sur les connaissances et les compétences sous MiCA s'appliquent-elles en France, et à partir de quand ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "retrieval",
+      "reponse": "Cette question ne porte pas sur un sujet couvert par les textes du corpus : je ne peux pas y répondre sans inventer.",
+      "citations": [],
+      "controle_nombres": {},
+      "attendu": "Refus : ces orientations ESMA ne sont pas dans le corpus de la version 1.",
+      "validation_question": "delegue",
+      "duree_s": 0.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 13.085498382566463,
+          "cosinus_top1": 0.5582981109619141
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-81-p15",
+          "amf-doc-2024-08-p1-notes",
+          "mica-art-143",
+          "mica-art-149",
+          "amf-doc-2024-08-bloc-1"
+        ]
+      }
+    }
+  ]
+}

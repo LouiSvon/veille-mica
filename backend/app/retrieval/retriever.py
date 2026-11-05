@@ -48,22 +48,29 @@ class Retriever:
         passages = [json.loads(l) for l in chemin.read_text(encoding="utf-8").splitlines() if l.strip()]
         return cls(passages, **kw)
 
+    def rechercher(self, question: str, k: int = 5, mode: Mode = "hybride") -> tuple[list[dict], dict]:
+        """Comme chercher, avec les signaux bruts de la requête : cosinus et score BM25 du meilleur passage.
+        Ces signaux, contrairement au score RRF, ont un sens absolu : ils servent au refus par seuil."""
+        liste_bm25 = self.bm25.classer(question, CANDIDATS)
+        signaux = {"bm25_top1": liste_bm25[0][1] if liste_bm25 else 0.0}
+        liste_dense = None
+        if self.dense is not None and self.embedder is not None:
+            liste_dense = self.dense.classer(self.embedder([question])[0], CANDIDATS)
+            signaux["cosinus_top1"] = liste_dense[0][1] if liste_dense else 0.0
+        if mode == "bm25":
+            classement = liste_bm25[:k]
+        elif liste_dense is None:
+            raise RuntimeError("recherche vectorielle indisponible : aucun embedder fourni")
+        elif mode == "dense":
+            classement = liste_dense[:k]
+        else:
+            classement = fusion_rrf([[i for i, _ in liste_bm25], [i for i, _ in liste_dense]])[:k]
+        resultats = [
+            {"passage": self.passages[i], "rang": r, "score": sc, "mode": mode}
+            for r, (i, sc) in enumerate(classement, start=1)
+        ]
+        return resultats, signaux
+
     def chercher(self, question: str, k: int = 5, mode: Mode = "hybride") -> list[dict]:
         """Retourne les k meilleurs passages : {"passage", "rang", "score", "mode"}."""
-        if mode == "bm25":
-            classement = self.bm25.classer(question, k)
-        elif mode == "dense":
-            classement = self._dense(question, k)
-        else:
-            liste_b = [i for i, _ in self.bm25.classer(question, CANDIDATS)]
-            liste_d = [i for i, _ in self._dense(question, CANDIDATS)]
-            classement = fusion_rrf([liste_b, liste_d])[:k]
-        return [
-            {"passage": self.passages[i], "rang": r, "score": s, "mode": mode}
-            for r, (i, s) in enumerate(classement, start=1)
-        ]
-
-    def _dense(self, question: str, k: int) -> list[tuple[int, float]]:
-        if self.dense is None or self.embedder is None:
-            raise RuntimeError("recherche vectorielle indisponible : aucun embedder fourni")
-        return self.dense.classer(self.embedder([question])[0], k)
+        return self.rechercher(question, k, mode)[0]

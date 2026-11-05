@@ -33,12 +33,29 @@ def texte_de(noeud) -> str:
     return "\n".join(ligne for ligne in lignes if ligne)
 
 
-def sous_decouper(texte: str) -> list[str]:
-    """Coupe un paragraphe géant (ex. les définitions de l'article 3) par lignes entières, en répétant la phrase d'introduction.
+def segmenter_ligne(ligne: str, seuil: int = SEUIL_CARACTERES) -> list[str]:
+    """Coupe une ligne géante aux fins de phrase ou de proposition (; . :). Le texte reste mot pour mot ;
+    une phrase seule plus longue que le seuil reste entière."""
+    if len(ligne) <= seuil:
+        return [ligne]
+    morceaux, courant = [], ""
+    for partie in re.split(r"(?<=[;.:])\s+", ligne):
+        if courant and len(courant) + 1 + len(partie) > seuil:
+            morceaux.append(courant)
+            courant = partie
+        else:
+            courant = (courant + " " + partie).strip()
+    if courant:
+        morceaux.append(courant)
+    return morceaux
 
-    La phrase répétée est du texte officiel : elle garde chaque morceau compréhensible seul.
+
+def sous_decouper(texte: str) -> list[str]:
+    """Coupe un texte géant (définitions, annexes) par lignes entières, en répétant la première ligne comme introduction.
+
+    La ligne répétée est du texte officiel : elle garde chaque morceau compréhensible seul.
     """
-    lignes = texte.split("\n")
+    lignes = [seg for l in texte.split("\n") for seg in segmenter_ligne(l)]
     intro, reste = lignes[0], lignes[1:]
     groupes, courant = [], [intro]
     taille = len(intro)
@@ -68,6 +85,18 @@ def decouper_definitions(texte: str) -> list[tuple[str, str]] | None:
         fin = debuts[k + 1] if k + 1 < len(debuts) else len(lignes)
         points.append((RE_DEFINITION.match(lignes[d]).group(1), "\n".join(lignes[d:fin])))
     return points
+
+
+def lignes_annexe(div) -> list[str]:
+    """Lignes d'une annexe dans l'ordre du document : un paragraphe ou une ligne de tableau par ligne."""
+    lignes = []
+    for el in div.find_all(["p", "tr"]):
+        if el.name == "p" and el.find_parent("td"):
+            continue  # le texte d'une cellule est repris par sa ligne de tableau
+        t = normaliser(" ".join(td.get_text(" ") for td in el.find_all("td"))) if el.name == "tr" else normaliser(el.get_text(" "))
+        if t:
+            lignes.append(t)
+    return lignes
 
 
 def decouper(chemin: Path, source_id: str, url: str) -> list[dict]:
@@ -109,11 +138,14 @@ def decouper(chemin: Path, source_id: str, url: str) -> list[dict]:
 
     for div in soupe.find_all("div", id=ID_ANNEXE):
         numero = ID_ANNEXE.match(div["id"]).group(1)
-        texte = normaliser(div.get_text(" "))
-        passages.append({
-            "source": source_id, "type": "annexe", "article": f"Annexe {numero}", "titre": "",
-            "url": url, "chunk_id": f"{source_id}-anx-{numero}", "paragraphe": "", "texte": texte,
-        })
+        texte = "\n".join(lignes_annexe(div))
+        morceaux = sous_decouper(texte) if len(texte) > SEUIL_CARACTERES else [texte]
+        for k, morceau in enumerate(morceaux, start=1):
+            suffixe = f"-s{k}" if len(morceaux) > 1 else ""
+            passages.append({
+                "source": source_id, "type": "annexe", "article": f"Annexe {numero}", "titre": "",
+                "url": url, "chunk_id": f"{source_id}-anx-{numero}{suffixe}", "paragraphe": "", "texte": morceau,
+            })
     return passages
 
 

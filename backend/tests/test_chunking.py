@@ -45,7 +45,7 @@ def test_mica_149_articles_et_6_annexes():
     p = decouper(MICA, "mica", "u")
     articles = {c["article"] for c in p if c["type"] == "article"}
     assert articles == {str(n) for n in range(1, 150)}
-    assert len([c for c in p if c["type"] == "annexe"]) == 6
+    assert {c["article"] for c in p if c["type"] == "annexe"} == {f"Annexe {n}" for n in ("I", "II", "III", "IV", "V", "VI")}
 
 
 @pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
@@ -96,3 +96,37 @@ def test_decouper_definitions_ne_decoupe_pas_une_liste_ordinaire():
     res = decouper_definitions(liste)
     assert [pt for pt, _ in res] == ["1", "2", "3", "4", "5", "6"]
     assert res[2][1] == "3) «terme3»: définition 3"
+
+
+@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
+def test_aucun_passage_mica_ne_depasse_6000_caracteres():
+    """Les annexes (jusqu'à 27 600 caractères) sont découpées : un passage géant fausserait la recherche et dépasserait le contexte."""
+    longs = [(c["chunk_id"], len(c["texte"])) for c in decouper(MICA, "mica", "u") if len(c["texte"]) > 6000]
+    assert longs == []
+
+
+@pytest.mark.skipif(not TFR.exists(), reason="texte brut absent (data/raw non versionné)")
+def test_aucun_passage_tfr_ne_depasse_6000_caracteres():
+    longs = [(c["chunk_id"], len(c["texte"])) for c in decouper(TFR, "tfr", "u") if len(c["texte"]) > 6000]
+    assert longs == []
+
+
+@pytest.mark.skipif(not MICA.exists(), reason="texte brut absent (data/raw non versionné)")
+def test_annexes_decoupees_sans_perdre_un_mot():
+    from bs4 import BeautifulSoup
+    soupe = BeautifulSoup(MICA.read_text(encoding="utf-8"), "html.parser")
+    p = decouper(MICA, "mica", "u")
+    for n in ("I", "II", "III", "V", "VI"):
+        original = set(soupe.find("div", id=f"anx_{n}").get_text(" ").split())
+        restitue = set(" ".join(c["texte"] for c in p if c["chunk_id"].startswith(f"mica-anx-{n}")).split())
+        assert original <= restitue, f"annexe {n} : mots perdus {sorted(original - restitue)[:5]}"
+
+
+def test_segmenter_ligne_coupe_aux_fins_de_phrase_sans_rien_perdre():
+    from app.chunking.decouper import segmenter_ligne
+    ligne = " ".join(f"Phrase numéro {i} qui se termine ici;" for i in range(200))
+    morceaux = segmenter_ligne(ligne, 500)
+    assert len(morceaux) > 1 and all(len(m) <= 500 for m in morceaux)
+    assert " ".join(morceaux) == ligne
+    assert segmenter_ligne("courte ligne", 500) == ["courte ligne"]
+    assert segmenter_ligne("x" * 900, 500) == ["x" * 900]  # aucune fin de phrase : ligne gardée entière
