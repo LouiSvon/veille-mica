@@ -71,8 +71,8 @@ sources:
     url_officielle: "https://www.amf-france.org/fr/reglementation/doctrine/doc-2024-08"
     # Le PDF /pdf/74734/fr/ est une impression de la page web, générée à la demande : 3 pages, 350 mots
     # (résumé seulement) et un hash différent à chaque téléchargement. Écarté (constaté le 2026-11-05).
-    # Le texte de la position est dans le lien « Télécharger la doctrine » (dossier /private/), URL française à fournir.
-    url_telechargement: a_fournir
+    # Le texte de la position est dans le lien « Télécharger la doctrine » : URL lue dans le href de la page par Louis le 2026-11-05.
+    url_telechargement: "https://www.amf-france.org/sites/institutionnel/files/private/2024-12/position-doc-2024-08_fr1_orientations-tfr-de-leba.pdf"
     en_tetes: {}
     fichier: "amf-doc-2024-08-fr.pdf"
     format: pdf
