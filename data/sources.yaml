@@ -102,7 +102,10 @@ sources:
     octets: a_fournir
     volume_mesure: a_fournir
     reutilisation: "Légifrance : licence ouverte 2.0 via l'API PISTE (compte à créer par Louis)"
-    statut: a_telecharger
+    # Constaté le 2026-11-05 : le téléchargement par script répond HTTP 403. Pas de contournement.
+    # Accès retenu : PDF téléchargé à la main depuis la page (lien « Extrait du Journal officiel électronique authentifié »),
+    # déposé dans data/raw/ ; ou API PISTE avec un compte créé par Louis.
+    statut: telechargement_manuel_a_faire
 
   - id: esma-qa-mica
     titre: "ESMA : questions-réponses sur MiCA (Interactive Single Rulebook)"
