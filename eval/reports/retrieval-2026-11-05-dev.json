@@ -7,6 +7,9 @@
   "rrf_k": 60,
   "candidats": 50,
   "empreinte_corpus": "2df49e132b50110c505e05b036b234b39f2435aa0af7daa027da39533de456b3",
+  "validations": {
+    "valide": 7
+  },
   "modes": {
     "bm25": {
       "recall_at_5": {

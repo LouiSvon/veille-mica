@@ -10,7 +10,7 @@ CHUNKS = RACINE / "data" / "processed" / "chunks.jsonl"
 
 SPLITS = {"dev", "test"}
 STATUTS = {"repondable", "hors_corpus", "piege"}
-VALIDATIONS = {"propose_non_valide", "valide", "corrige", "refuse"}
+VALIDATIONS = {"propose_non_valide", "valide", "corrige", "refuse", "delegue"}
 CATEGORIES = {"fait_direct", "definition", "date_applicabilite", "croisement", "hors_corpus", "piege"}
 CHAMPS = {"id", "split", "categorie", "question", "reponse_attendue", "statut", "passages_reference",
           "comportement_attendu", "auteur", "validation", "notes"}
@@ -86,3 +86,10 @@ def test_repartition_dev_test():
     qs = charger()
     assert sum(q["split"] == "dev" for q in qs) >= 10, "il faut au moins 10 questions de développement"
     assert sum(q["split"] == "test" for q in qs) >= 1
+
+
+def test_les_questions_deleguees_sont_signalees_comme_telles():
+    """Une question choisie par l'assistant sur délégation doit le dire : elle n'a pas été relue une par une par Louis."""
+    for q in charger():
+        if q["validation"] == "delegue":
+            assert q["auteur"] == "assistant" and "délégation" in q["notes"], q["id"]

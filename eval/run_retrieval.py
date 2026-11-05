@@ -22,7 +22,7 @@ from app.retrieval.dense import embedder_ollama  # noqa: E402
 from app.retrieval.retriever import Retriever  # noqa: E402
 
 MODES = ("bm25", "dense", "hybride")
-VALIDES = {"valide", "corrige"}
+VALIDES = {"valide", "corrige", "delegue"}  # "delegue" : choisie par l'assistant sur délégation de Louis, signalé dans le rapport
 
 
 def main() -> int:
@@ -46,7 +46,9 @@ def main() -> int:
     rapport = {
         "date": str(date.today()), "split": a.split, "k": a.k, "n_questions": len(retenues),
         "modele_embedding": "bge-m3", "rrf_k": 60, "candidats": 50,
-        "empreinte_corpus": hashlib.sha256(chunks.read_bytes()).hexdigest(), "modes": {},
+        "empreinte_corpus": hashlib.sha256(chunks.read_bytes()).hexdigest(),
+        "validations": {v: sum(q["validation"] == v for q in retenues) for v in sorted({q["validation"] for q in retenues})},
+        "modes": {},
     }
     for mode in MODES:
         rangs, details = [], []
