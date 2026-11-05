@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-05",
+  "split": "dev",
+  "k": 5,
+  "n_questions": 7,
+  "modele_embedding": "bge-m3",
+  "rrf_k": 60,
+  "candidats": 50,
+  "empreinte_corpus": "d0dafc21f15cbaf379eb309035ce56118bd4fc1afd93e95652850f4718a22ef5",
+  "modes": {
+    "bm25": {
+      "recall_at_5": {
+        "k": 6,
+        "n": 7,
+        "wilson_95": [
+          0.487,
+          0.974
+        ]
+      },
+      "mrr_at_10": 0.643,
+      "details": [
+        {
+          "id": "q001",
+          "rang": 4
+        },
+        {
+          "id": "q002",
+          "rang": 1
+        },
+        {
+          "id": "q004",
+          "rang": null
+        },
+        {
+          "id": "q007",
+          "rang": 4
+        },
+        {
+          "id": "q008",
+          "rang": 1
+        },
+        {
+          "id": "q010",
+          "rang": 1
+        },
+        {
+          "id": "q016",
+          "rang": 1
+        }
+      ]
+    },
+    "dense": {
+      "recall_at_5": {
+        "k": 6,
+        "n": 7,
+        "wilson_95": [
+          0.487,
+          0.974
+        ]
+      },
+      "mrr_at_10": 0.857,
+      "details": [
+        {
+          "id": "q001",
+          "rang": 1
+        },
+        {
+          "id": "q002",
+          "rang": 1
+        },
+        {
+          "id": "q004",
+          "rang": null
+        },
+        {
+          "id": "q007",
+          "rang": 1
+        },
+        {
+          "id": "q008",
+          "rang": 1
+        },
+        {
+          "id": "q010",
+          "rang": 1
+        },
+        {
+          "id": "q016",
+          "rang": 1
+        }
+      ]
+    },
+    "hybride": {
+      "recall_at_5": {
+        "k": 6,
+        "n": 7,
+        "wilson_95": [
+          0.487,
+          0.974
+        ]
+      },
+      "mrr_at_10": 0.857,
+      "details": [
+        {
+          "id": "q001",
+          "rang": 1
+        },
+        {
+          "id": "q002",
+          "rang": 1
+        },
+        {
+          "id": "q004",
+          "rang": null
+        },
+        {
+          "id": "q007",
+          "rang": 1
+        },
+        {
+          "id": "q008",
+          "rang": 1
+        },
+        {
+          "id": "q010",
+          "rang": 1
+        },
+        {
+          "id": "q016",
+          "rang": 1
+        }
+      ]
+    }
+  }
+}
