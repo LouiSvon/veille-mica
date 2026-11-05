@@ -2,3 +2,4 @@ sources/brut/
 .DS_Store
 .venv/
 __pycache__/
+data/
