@@ -69,10 +69,10 @@ sources:
     niveau: extension_1
     contraignant: a_fournir
     url_officielle: "https://www.amf-france.org/fr/reglementation/doctrine/doc-2024-08"
-    url_telechargement: a_fournir
+    url_telechargement: "https://www.amf-france.org/sites/institutionnel/files/pdf/74734/fr/Orientations_de_l%27EBA_sur_les_exigences_en_matiere_d%27information_concernant_certains_transferts_de_crypto-actifs.pdf"
     en_tetes: {}
-    fichier: "amf-doc-2024-08-fr.html"
-    format: a_fournir
+    fichier: "amf-doc-2024-08-fr.pdf"
+    format: pdf
     langue: fr
     version: a_fournir
     date_consultation: a_fournir
@@ -88,10 +88,10 @@ sources:
     niveau: extension_1
     contraignant: true
     url_officielle: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050353747"
-    url_telechargement: a_fournir
+    url_telechargement: "https://www.legifrance.gouv.fr/download/pdf?id=fz5LPyuiPupwqXF0Gqhf9lUF3j2KuUjufyTBLOMrJTk="
     en_tetes: {}
-    fichier: "ordonnance-2024-936-fr.html"
-    format: a_fournir
+    fichier: "ordonnance-2024-936-fr.pdf"
+    format: pdf
     langue: fr
     version: a_fournir
     date_consultation: a_fournir
@@ -107,15 +107,18 @@ sources:
     niveau: extension_1
     contraignant: false
     url_officielle: "https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica"
+    # Pas d'URL de liste : l'outil de recherche ESMA (/esma-qa-search-page/all) est une application web.
+    # Chaque Q&A a sa page (/publications-data/questions-answers/<ID>, en anglais) et un export Excel.
+    # Accès retenu : export Excel de la liste filtrée MiCA, fait par Louis dans son navigateur, déposé dans data/raw/.
     url_telechargement: a_fournir
     en_tetes: {}
-    fichier: a_fournir
-    format: a_fournir
+    fichier: "esma-qa-mica.xlsx"
+    format: xlsx
     langue: en
     version: a_fournir
     date_consultation: a_fournir
     sha256: a_fournir
     octets: a_fournir
     volume_mesure: a_fournir
-    reutilisation: a_fournir
-    statut: a_telecharger
+    reutilisation: "robots.txt lu le 2026-11-05 : aucun Crawl-delay, /search/ interdit, pages Q&A non interdites. Conditions de réutilisation : a_fournir"
+    statut: export_manuel_a_faire
