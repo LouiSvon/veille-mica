@@ -30,8 +30,8 @@ MESSAGES_REFUS = {
 @dataclass
 class Config:
     k: int = 5
-    mode: str = "hybride"
-    seuil_cosinus: float = 0.59  # règle : docs/regles-notation.md ; valeur dérivée par eval/calibrer_seuil.py
+    mode: str = "dense"  # vectoriel seul : meilleur que l'hybride sur le dev (MRR 1,00 contre 0,93) puis sur le test (voir docs/choix-techniques.md)
+    seuil_cosinus: float = 0.59  # règle v1 : docs/regles-notation.md ; valeur dérivée par eval/calibrer_seuil.py (v2 essayée puis abandonnée)
     essais: int = 2  # une seule relance si le JSON est invalide
 
 

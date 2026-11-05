@@ -65,3 +65,10 @@ Après avoir généralisé la règle d'avis juridique du prompt, `qwen3.5:9b` a 
 - Une date absente de la question et de tous les passages retrouvés (« 10 juillet 2027 ») reste rejetée dans les deux cas. Tests dédiés, cas positifs et négatifs.
 
 Cette correction vient d'un défaut de conception constaté sur des refus corrects, comme la première. Elle rend le contrôle moins strict sur les refus : la limite est qu'un refus peut mentionner un nombre d'un passage retrouvé sans le citer.
+
+## Troisième point : compromis du seuil de la couche 1, règle v2 essayée puis abandonnée (2026-11-05)
+
+- **Constat** : en essayant l'interface, une reformulation correcte (« Jusqu'à quelle date la période transitoire permet-elle de continuer sans agrément ? ») était refusée par la couche 1, alors que la recherche vectorielle retrouvait l'article 143 au rang 1 (cosinus 0,553, seuil 0,59). Sur 10 reformulations écrites par l'assistant (sonde exploratoire), 2 étaient ainsi refusées à tort.
+- **Règle v2 essayée** : minimum pris aussi sur les reformulations, soit un seuil de 0,52. Résultat sur le dev (15 questions, mode vectoriel) : 13 réussites sur 15. Deux échecs : q016, où la recherche ne ramène pas la position AMF et le modèle refuse (limite de recherche, pas une invention) ; q039, où le modèle **répond** que les orientations ESMA s'appliquent en France en citant des articles sans rapport. Cette réponse non fondée passe les contrôles automatiques (les nombres sont présents dans les passages cités).
+- **Décision** : on garde la règle v1 (0,59). Pour un outil de veille juridique, une réponse non fondée est plus grave qu'un faux refus. Le prix, mesuré sur la sonde, est que des reformulations vagues ou courtes peuvent être refusées à tort : l'interface le dit et suggère de reformuler.
+- **Limite non résolue** : le contrôle des nombres ne détecte pas une phrase fausse qui n'utilise que des nombres présents dans les passages cités (cas q039 à 0,52). Aucune vérification automatique de fidélité du raisonnement n'existe.

@@ -1,0 +1,1152 @@
+{
+  "date": "2026-11-05",
+  "split": "test",
+  "modele": "qwen3.5:9b",
+  "mode_recherche": "hybride",
+  "seuil_cosinus": 0.59,
+  "num_ctx": 16384,
+  "seed": 7,
+  "think": false,
+  "n_questions": 27,
+  "resume_par_statut": {
+    "repondable": {
+      "reussites": 18,
+      "n": 23,
+      "wilson_95": [
+        0.581,
+        0.903
+      ]
+    },
+    "hors_corpus": {
+      "reussites": 2,
+      "n": 2,
+      "wilson_95": [
+        0.342,
+        1.0
+      ]
+    },
+    "avis_juridique": {
+      "reussites": 2,
+      "n": 2,
+      "wilson_95": [
+        0.342,
+        1.0
+      ]
+    }
+  },
+  "refus_par_couche_et_motif": {
+    "retrieval/hors_corpus": 1,
+    "modele/hors_corpus": 1,
+    "modele/avis_juridique": 2,
+    "verification/echec_format": 2
+  },
+  "note": "Justesse du contenu non notée ici. Toute note de justesse de l'assistant est non vérifiée par Louis.",
+  "detail": [
+    {
+      "id": "q003",
+      "statut": "repondable",
+      "question": "MiCA s'applique-t-il aux crypto-actifs uniques et non fongibles ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "MiCA ne s'applique pas aux crypto-actifs qui sont uniques et non fongibles avec d'autres crypto-actifs.",
+      "citations": [
+        "mica-art-2"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Non : l'article 2 de MiCA exclut les crypto-actifs qui sont uniques et non fongibles avec d'autres crypto-actifs.",
+      "validation_question": "valide",
+      "duree_s": 6.5,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 15.955608847418247,
+          "cosinus_top1": 0.6755183935165405
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-2",
+          "mica-art-4-p3",
+          "mica-art-86",
+          "mica-art-61",
+          "mica-art-12-p1"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2951,
+        "eval_count": 73,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q005",
+      "statut": "repondable",
+      "question": "Quelle est la définition du jeton de monnaie électronique dans MiCA ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Le jeton de monnaie électronique est défini comme un type de crypto-actif qui vise à conserver une valeur stable en se référant à la valeur d'une monnaie officielle.",
+      "citations": [
+        "mica-art-3-p1-pt7"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Un type de crypto-actif qui vise à conserver une valeur stable en se référant à la valeur d'une monnaie officielle (article 3, point 7).",
+      "validation_question": "valide",
+      "duree_s": 3.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 11.521561644062315,
+          "cosinus_top1": 0.7223384976387024
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-3-p1-pt7",
+          "mica-art-3-p1-pt6",
+          "mica-art-56-p4",
+          "mica-art-57-p1",
+          "mica-art-57-p3"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1490,
+        "eval_count": 83,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q006",
+      "statut": "repondable",
+      "question": "Qu'est-ce qu'un jeton se référant à un ou des actifs selon MiCA ?",
+      "reussite": false,
+      "raison": "aucune citation de référence",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Selon MiCA, un jeton se référant à un ou des actifs est un jeton dont les critères de classement incluent des seuils de détenteurs, de capitalisation ou de volume de transactions, ainsi que des caractéristiques liées à l'émetteur ou à son importance internationale.",
+      "citations": [
+        "mica-art-43-p1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Un type de crypto-actif qui n'est pas un jeton de monnaie électronique et qui vise à conserver une valeur stable en se référant à une autre valeur ou un autre droit, ou à une combinaison de ceux-ci, y compris une ou plusieurs monnaies officielles (article 3, point 6).",
+      "validation_question": "valide",
+      "duree_s": 3.6,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 8.947754028522546,
+          "cosinus_top1": 0.7497835159301758
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-43-p1",
+          "mica-art-17-p1-s2",
+          "mica-art-19-p4",
+          "mica-art-24-p3",
+          "mica-art-43-p5"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2209,
+        "eval_count": 99,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q009",
+      "statut": "repondable",
+      "question": "Avant quelle date les exploitants de plates-formes de négociation doivent-ils veiller à ce qu'un livre blanc existe pour les crypto-actifs admis à la négociation avant le 30 décembre 2024 ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Pour les crypto-actifs autres que des jetons se référant à un ou des actifs ou des jetons de monnaie électronique admis à la négociation avant le 30 décembre 2024, les exploitants de plates-formes de négociation doivent veiller à ce qu'un livre blanc soit rédigé, notifié et publié au plus tard le 31 décembre 2027.",
+      "citations": [
+        "mica-art-143"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Au plus tard le 31 décembre 2027, dans les cas requis par MiCA (article 143, paragraphe 2, point b).",
+      "validation_question": "valide",
+      "duree_s": 4.2,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 29.95178149547215,
+          "cosinus_top1": 0.7042405605316162
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-143",
+          "mica-art-12-p1",
+          "mica-art-12-p2",
+          "mica-art-12-p9",
+          "mica-art-6-p3"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2243,
+        "eval_count": 130,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q011",
+      "statut": "repondable",
+      "question": "Que signifie la date du 27 novembre 2024 dans les orientations de l'ABE sur la travel rule ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "La date du 27 novembre 2024 est la date limite pour que les autorités compétentes notifient à l'ABE leur respect ou leur intention de respecter les orientations, ou indiquent les raisons d'un non-respect. En l'absence de notification avant cette date, les autorités seront considérées comme n'ayant pas respecté ces orientations.",
+      "citations": [
+        "eba-gl-2024-11-par-3"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "C'est la date avant laquelle les autorités compétentes doivent indiquer à l'ABE si elles respectent ou entendent respecter les orientations (ou en indiquer les raisons). Sans notification avant cette date, elles sont considérées comme n'ayant pas respecté les orientations (paragraphe 3). Ce n'est pas la date d'application, qui est le 30 décembre 2024.",
+      "validation_question": "valide",
+      "duree_s": 3.1,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 19.745318742432026,
+          "cosinus_top1": 0.6768628358840942
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-3",
+          "eba-gl-2024-11-par-10",
+          "eba-gl-2024-11-par-11",
+          "eba-gl-2024-11-p2-notes",
+          "eba-gl-2024-11-p25-notes"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1350,
+        "eval_count": 114,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q012",
+      "statut": "repondable",
+      "question": "Jusqu'à quelle date les PSCA peuvent-ils, à titre exceptionnel, utiliser des infrastructures présentant des limitations techniques sur l'exhaustivité des données ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Jusqu'au 31 juillet 2025, les PSCA et les PSCAI peuvent utiliser, à titre exceptionnel, des infrastructures présentant des limitations techniques sur l'exhaustivité des données.",
+      "citations": [
+        "eba-gl-2024-11-par-24"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Jusqu'au 31 juillet 2025, à condition de compenser ces limitations par des mesures techniques ou des correctifs supplémentaires (orientations EBA, paragraphe 24).",
+      "validation_question": "valide",
+      "duree_s": 3.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 48.349655286510924,
+          "cosinus_top1": 0.6526457071304321
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-24",
+          "eba-gl-2024-11-par-89",
+          "eba-gl-2024-11-par-78",
+          "eba-gl-2024-11-par-72",
+          "eba-gl-2024-11-par-88"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1770,
+        "eval_count": 86,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q013",
+      "statut": "repondable",
+      "question": "Selon les orientations de l'ABE, à quel moment les PSCA déterminent-ils qu'un transfert impliquant une adresse auto-hébergée atteint ou dépasse 1 000 EUR ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les PSCA devraient déterminer que le transfert atteint ou dépasse 1 000 EUR au moment où il a été ordonné ou initié pour le PSCA de l'initiateur, ou au moment de la réception pour le PSCA du bénéficiaire. Cette évaluation doit se faire en utilisant le taux de change du crypto-actif transféré au moment du transfert, indépendamment des frais de transaction.",
+      "citations": [
+        "eba-gl-2024-11-par-81",
+        "eba-gl-2024-11-par-82"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Pour le PSCA de l'initiateur, au moment où le transfert a été ordonné ou initié ; pour le PSCA du bénéficiaire, au moment de la réception (paragraphe 81).",
+      "validation_question": "valide",
+      "duree_s": 3.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 46.18090141906172,
+          "cosinus_top1": 0.7997580766677856
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-81",
+          "eba-gl-2024-11-par-82",
+          "eba-gl-2024-11-par-83",
+          "eba-gl-2024-11-par-86",
+          "eba-gl-2024-11-par-85"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1599,
+        "eval_count": 140,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q015",
+      "statut": "repondable",
+      "question": "Un prestataire qui bénéficie de la période transitoire de MiCA est-il pour autant exempté des obligations du règlement 2023/1113 ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Non, un prestataire bénéficiant de la période transitoire n'est pas exempté des obligations du règlement 2023/1113.",
+      "citations": [
+        "amf-doc-2024-08-p1-notes"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Non. La position AMF DOC-2024-08 (note 2) indique que, faute de disposition prévoyant une telle période transitoire dans le règlement 2023/1113, ces prestataires ne sauraient être exemptés de leurs obligations au titre de ce règlement. La période transitoire de l'article 143, paragraphe 3, de MiCA ne concerne que MiCA.",
+      "validation_question": "valide",
+      "duree_s": 2.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 21.57543691624436,
+          "cosinus_top1": 0.6292387247085571
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-143",
+          "amf-doc-2024-08-p1-notes",
+          "mica-art-62-p4",
+          "mica-art-4-p5",
+          "eba-gl-2024-11-par-15"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2578,
+        "eval_count": 79,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q017",
+      "statut": "repondable",
+      "question": "Quels prestataires relèvent de la supervision de l'AMF au titre de la position DOC-2024-08 ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Au titre de la position DOC-2024-08, l'AMF supervise les conseillers en investissement financiers, les dépositaires centraux et les sociétés de gestion de placements collectifs autorisés à fournir des services sur crypto-actifs, ainsi que les prestataires autorisés uniquement pour la gestion de portefeuille ou les conseils en crypto-actifs.",
+      "citations": [
+        "amf-doc-2024-08-bloc-1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Les conseillers en investissement financiers, les dépositaires centraux et les sociétés de gestion de placements collectifs autorisés par l'AMF à fournir des services sur crypto-actifs, et les prestataires autorisés uniquement pour la gestion de portefeuille ou le conseil en crypto-actifs, y compris ceux ayant leur siège dans un autre État membre et exerçant en France par le recours à des personnes.",
+      "validation_question": "valide",
+      "duree_s": 4.8,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 36.97088499271624,
+          "cosinus_top1": 0.5981607437133789
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "amf-doc-2024-08-bloc-1",
+          "amf-doc-2024-08-p1-notes",
+          "amf-doc-2024-08-bloc-2",
+          "ordonnance-2024-936-art-33",
+          "ordonnance-2024-936-art-29"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2932,
+        "eval_count": 121,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q020",
+      "statut": "hors_corpus",
+      "question": "Quelles exigences DORA impose-t-il aux prestataires pour la gestion des incidents liés aux TIC ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "retrieval",
+      "reponse": "Cette question ne porte pas sur un sujet couvert par les textes du corpus : je ne peux pas y répondre sans inventer.",
+      "citations": [],
+      "controle_nombres": {},
+      "attendu": "Refus : DORA n'est pas dans le corpus de la version 1.",
+      "validation_question": "valide",
+      "duree_s": 0.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 13.351428905602138,
+          "cosinus_top1": 0.545312762260437
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-68-p7",
+          "mica-art-75-p8",
+          "mica-art-60-p7",
+          "mica-art-62-p2-s1",
+          "eba-gl-2024-11-par-23"
+        ]
+      }
+    },
+    {
+      "id": "q021",
+      "statut": "hors_corpus",
+      "question": "Quelle est la position de l'autorité britannique FCA sur les crypto-actifs ?",
+      "reussite": true,
+      "raison": "refus justifié",
+      "decision": "refuser",
+      "motif": "hors_corpus",
+      "couche_refus": "modele",
+      "reponse": "Les passages fournis ne contiennent aucune information sur la position de l'autorité britannique FCA. Ils se limitent au Règlement (UE) 2023/1114 et à des orientations de l'ABE concernant les États membres de l'Union européenne.",
+      "citations": [],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Refus : aucun texte britannique dans le corpus.",
+      "validation_question": "valide",
+      "duree_s": 5.1,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 6.929090566205152,
+          "cosinus_top1": 0.6332613229751587
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-94-p1-s3",
+          "mica-art-2",
+          "amf-doc-2024-08-bloc-2",
+          "mica-art-94-p2",
+          "mica-art-102"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3872,
+        "eval_count": 96,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q023",
+      "statut": "avis_juridique",
+      "question": "Mon entreprise propose un service d'échange de crypto-actifs en France : puis-je continuer sans agrément ?",
+      "reussite": true,
+      "raison": "refus avis_juridique",
+      "decision": "refuser",
+      "motif": "avis_juridique",
+      "couche_refus": "modele",
+      "reponse": "Selon l'article 59 du règlement MiCA, une personne ne peut pas fournir de services sur crypto-actifs dans l'Union sans être agréée ou autorisée par ailleurs.\nLes textes cités indiquent que les prestataires de services sur crypto-actifs doivent respecter les conditions de leur agrément et que les autorités compétentes veillent à ce que ces agréments précisent pour quels services ils sont accordés.\nIl n'est pas possible de conclure sur la conformité de votre projet spécifique sans connaître votre statut juridique actuel et votre situation par rapport aux entités mentionnées dans les textes.",
+      "citations": [
+        "mica-art-59",
+        "ordonnance-2024-936-art-18-s5"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Pas d'avis juridique sur un cas particulier. L'assistant peut renvoyer au texte (article 143, paragraphe 3, de MiCA, et l'article 59) sans conclure sur le cas de l'utilisateur, et rappeler que ce n'est pas un conseil juridique.",
+      "validation_question": "valide",
+      "duree_s": 6.1,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 10.780063451353499,
+          "cosinus_top1": 0.7019402980804443
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-59",
+          "mica-art-62-p1",
+          "mica-art-63-p5",
+          "ordonnance-2024-936-art-18-s5",
+          "ordonnance-2024-936-art-18-s4"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3260,
+        "eval_count": 172,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q024",
+      "statut": "avis_juridique",
+      "question": "Dis-moi si ma plateforme est conforme à l'article 59 de MiCA.",
+      "reussite": true,
+      "raison": "refus avis_juridique",
+      "decision": "refuser",
+      "motif": "avis_juridique",
+      "couche_refus": "modele",
+      "reponse": "Les passages fournis énoncent les obligations générales et les sanctions applicables aux infractions de l'article 59, mais ne permettent pas de conclure sur la conformité de votre plateforme spécifique.",
+      "citations": [
+        "mica-art-60-p11",
+        "mica-art-111-p1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Refus de se prononcer sur la conformité d'un cas particulier. L'assistant peut citer le contenu de l'article 59 sans évaluer la plateforme, et rappeler que ce n'est pas un conseil juridique.",
+      "validation_question": "valide",
+      "duree_s": 4.5,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 6.110234216830751,
+          "cosinus_top1": 0.6508172750473022
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-60-p11",
+          "mica-art-68-p8",
+          "mica-anx-V-s4",
+          "mica-anx-V-s6",
+          "mica-art-111-p1"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3326,
+        "eval_count": 86,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q025",
+      "statut": "repondable",
+      "question": "Comment MiCA définit-il un prestataire de services sur crypto-actifs ?",
+      "reussite": false,
+      "raison": "faux refus (echec_format, couche verification)",
+      "decision": "refuser",
+      "motif": "echec_format",
+      "couche_refus": "verification",
+      "reponse": "Le modèle n'a pas produit de réponse exploitable : je préfère ne pas répondre.",
+      "citations": [],
+      "controle_nombres": {},
+      "attendu": "Une personne morale ou une autre entreprise dont l'occupation ou l'activité consiste à fournir un ou plusieurs services sur crypto-actifs à des clients à titre professionnel, et qui est autorisée à fournir ces services conformément à l'article 59 (article 3, point 15).",
+      "validation_question": "delegue",
+      "duree_s": 4.5,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 8.779815880818159,
+          "cosinus_top1": 0.8012912273406982
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-109-p5",
+          "mica-art-81-p3",
+          "mica-art-62-p3",
+          "mica-art-75-p8",
+          "mica-art-65"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2644,
+        "eval_count": 57,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 2,
+        "erreurs_format": [
+          "essai 1 : ValidationError: 1 validation error for SortieModele\n  Value error, une réponse doit citer au moins un passage [type=value_error, input_value={'decision': 'repondre', ...tifs.\", 'citations': []}, input_type=dict]\n    ",
+          "essai 2 : ValidationError: 1 validation error for SortieModele\n  Value error, une réponse doit citer au moins un passage [type=value_error, input_value={'decision': 'repondre', ...tifs.\", 'citations': []}, input_type=dict]\n    "
+        ]
+      }
+    },
+    {
+      "id": "q026",
+      "statut": "repondable",
+      "question": "Que signifie « conservation et administration de crypto-actifs pour le compte de clients » dans MiCA ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Dans MiCA, l'expression « conservation et administration de crypto-actifs pour le compte de clients » désigne la garde ou le contrôle, pour le compte de clients, de crypto-actifs ou des moyens d'accès à ces crypto-actifs, le cas échéant sous la forme de clés cryptographiques privées.",
+      "citations": [
+        "mica-art-3-p1-pt17"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "La garde ou le contrôle, pour le compte de clients, de crypto-actifs ou des moyens d'accès à ces crypto-actifs, le cas échéant sous la forme de clés cryptographiques privées (article 3, point 17).",
+      "validation_question": "delegue",
+      "duree_s": 3.3,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 18.295439697258743,
+          "cosinus_top1": 0.811863124370575
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-75-p6",
+          "mica-art-75-p3",
+          "mica-art-75-p2",
+          "mica-art-75-p5",
+          "mica-art-3-p1-pt17"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1453,
+        "eval_count": 112,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q027",
+      "statut": "repondable",
+      "question": "Qu'est-ce que l'exploitation d'une plate-forme de négociation de crypto-actifs selon MiCA ?",
+      "reussite": false,
+      "raison": "aucune citation de référence",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "L'exploitation d'une plate-forme de négociation de crypto-actifs implique que les prestataires de services s'assurent de l'adéquation des actifs avant leur admission, empêchent l'admission d'actifs avec anonymisation intégrée, ne négocient pas pour compte propre sur leur propre plateforme, rendent publics les détails des transactions et maintiennent des ressources pour rendre compte à l'autorité compétente.",
+      "citations": [
+        "mica-art-76-p5",
+        "mica-art-76-p10",
+        "mica-art-76-p3",
+        "mica-art-76-p2",
+        "mica-art-76-p14"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "La gestion d'un ou de plusieurs systèmes multilatéraux qui réunissent ou facilitent la rencontre de multiples intérêts acheteurs et vendeurs exprimés par des tiers pour des crypto-actifs, d'une manière qui aboutit à un contrat, par échange de crypto-actifs contre des fonds ou contre d'autres crypto-actifs (article 3, point 18).",
+      "validation_question": "delegue",
+      "duree_s": 4.2,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 17.503930081052644,
+          "cosinus_top1": 0.8027245998382568
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-76-p5",
+          "mica-art-76-p10",
+          "mica-art-76-p3",
+          "mica-art-76-p2",
+          "mica-art-76-p14"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1435,
+        "eval_count": 160,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q028",
+      "statut": "repondable",
+      "question": "Quelles offres au public de crypto-actifs (hors jetons référencés et jetons de monnaie électronique) échappent à l'obligation de rédiger, notifier et publier un livre blanc ?",
+      "reussite": false,
+      "raison": "aucune citation de référence",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les offres au public de crypto-actifs autres que des jetons se référant à un ou des actifs ou un jeton de monnaie électronique échappent à l'obligation de publier un livre blanc si elles ne sont pas concernées par les dispositions des paragraphes 2 ou 3 de l'article 4.",
+      "citations": [
+        "mica-art-4-p8",
+        "mica-art-4-p7"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "D'après l'article 4, paragraphe 2, les points b), c), d) et f) du paragraphe 1 (livre blanc rédigé, notifié et publié ; communications commerciales publiées) ne s'appliquent pas à : une offre à moins de 150 personnes par État membre agissant pour leur propre compte ; une offre dont le montant total n'excède pas 1 000 000 EUR sur 12 mois ; une offre destinée uniquement à des investisseurs qualifiés lorsque le crypto-actif ne peut être détenu que par eux.",
+      "validation_question": "delegue",
+      "duree_s": 3.8,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 31.211815408754145,
+          "cosinus_top1": 0.7371057271957397
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-4-p8",
+          "mica-art-4-p7",
+          "mica-art-4-p6",
+          "mica-art-51-p6",
+          "mica-art-11"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1872,
+        "eval_count": 118,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q029",
+      "statut": "repondable",
+      "question": "Dans quel délai les autorités compétentes accusent-elles réception d'une demande d'agrément de prestataire de services sur crypto-actifs ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les autorités compétentes accusent réception de la demande dans un délai de cinq jours ouvrables à compter de sa réception.",
+      "citations": [
+        "mica-art-63-p1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Rapidement et, en tout état de cause, dans un délai de cinq jours ouvrables à compter de la réception de la demande visée à l'article 62, paragraphe 1 (article 63, paragraphe 1).",
+      "validation_question": "delegue",
+      "duree_s": 2.6,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 29.455030473183516,
+          "cosinus_top1": 0.812024712562561
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "mica-art-63-p1",
+          "mica-art-63-p9",
+          "mica-art-63-p2",
+          "mica-art-20-p1",
+          "mica-art-20-p2"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1524,
+        "eval_count": 69,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q030",
+      "statut": "repondable",
+      "question": "À partir de quelle date le règlement (UE) 2023/1113 sur les transferts de fonds et de certains crypto-actifs est-il applicable ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Le règlement (UE) 2023/1113 est applicable à partir du 30 décembre 2024.",
+      "citations": [
+        "tfr-art-40"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "À partir du 30 décembre 2024 (article 40).",
+      "validation_question": "delegue",
+      "duree_s": 2.4,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 19.395159741401685,
+          "cosinus_top1": 0.8137120604515076
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "tfr-art-40",
+          "eba-gl-2024-11-par-15",
+          "eba-gl-2024-11-par-39",
+          "eba-gl-2024-11-par-46",
+          "eba-gl-2024-11-par-17"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1388,
+        "eval_count": 75,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q031",
+      "statut": "repondable",
+      "question": "Quelles orientations antérieures les orientations de l'ABE sur la travel rule abrogent-elles, et à quelle date ?",
+      "reussite": false,
+      "raison": "faux refus (echec_format, couche verification)",
+      "decision": "refuser",
+      "motif": "echec_format",
+      "couche_refus": "verification",
+      "reponse": "Le modèle n'a pas produit de réponse exploitable : je préfère ne pas répondre.",
+      "citations": [],
+      "controle_nombres": {},
+      "attendu": "Les « Orientations communes, prises en application de l'article 25 du règlement (UE) 2015/847 », relatives aux mesures que les PSP doivent prendre pour détecter des informations manquantes ou incomplètes, sont abrogées avec effet au 30 décembre 2024 (EBA/GL/2024/11, paragraphe 11).",
+      "validation_question": "delegue",
+      "duree_s": 5.8,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 15.313548887507359,
+          "cosinus_top1": 0.6474221348762512
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-10",
+          "eba-gl-2024-11-p12-notes",
+          "eba-gl-2024-11-p5-notes",
+          "eba-gl-2024-11-par-3",
+          "eba-gl-2024-11-p8-notes"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1160,
+        "eval_count": 121,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 2,
+        "erreurs_format": [
+          "essai 1 : ValidationError: 1 validation error for SortieModele\n  Value error, une réponse doit citer au moins un passage [type=value_error, input_value={'decision': 'repondre', ...gés.\", 'citations': []}, input_type=dict]\n    F",
+          "essai 2 : ValidationError: 1 validation error for SortieModele\n  Value error, une réponse doit citer au moins un passage [type=value_error, input_value={'decision': 'repondre', ...gés.\", 'citations': []}, input_type=dict]\n    F"
+        ]
+      }
+    },
+    {
+      "id": "q032",
+      "statut": "repondable",
+      "question": "Quand un transfert de crypto-actifs est-il considéré comme identifié individuellement selon les orientations de l'ABE ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Un transfert de crypto-actifs est considéré comme identifié individuellement lorsqu'un identifiant unique est utilisé pour chaque transfert, tel qu'un hachage de transaction ou un numéro de référence, ou lorsque des informations supplémentaires sont incluses dans le transfert afin de permettre son identification.",
+      "citations": [
+        "eba-gl-2024-11-par-76"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Lorsqu'un identifiant unique est utilisé pour chaque transfert, tel qu'un hachage de transaction ou un numéro de référence, ou lorsque des informations supplémentaires sont incluses dans le transfert pour permettre son identification (paragraphe 76).",
+      "validation_question": "delegue",
+      "duree_s": 4.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 15.512975635961034,
+          "cosinus_top1": 0.7548059821128845
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-76",
+          "eba-gl-2024-11-par-7",
+          "eba-gl-2024-11-par-88",
+          "eba-gl-2024-11-par-53",
+          "eba-gl-2024-11-par-47"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2381,
+        "eval_count": 102,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q033",
+      "statut": "repondable",
+      "question": "Quels moyens techniques les PSCA peuvent-ils utiliser pour déterminer si une adresse auto-hébergée est utilisée à l'autre extrémité d'un transfert ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les PSCA devraient s'appuyer sur les moyens techniques disponibles, notamment l'analyse des chaînes de blocs, les fournisseurs de données tiers et les identifiants utilisés par les systèmes de messagerie. Ils peuvent également utiliser des vérifications automatisées ou non automatisées, l'envoi d'un montant prédéfini, ou demander au client de signer numériquement un message spécifique. D'autres moyens techniques appropriés sont possibles à condition qu'ils permettent une évaluation fiable et sécurisée.",
+      "citations": [
+        "eba-gl-2024-11-par-77",
+        "eba-gl-2024-11-par-83",
+        "eba-gl-2024-11-par-89"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Les moyens techniques disponibles, notamment (mais pas exclusivement) l'analyse des chaînes de blocs, les fournisseurs de données tiers et les identifiants utilisés par les systèmes de messagerie (paragraphe 77).",
+      "validation_question": "delegue",
+      "duree_s": 4.6,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 43.23204837541958,
+          "cosinus_top1": 0.7291834354400635
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-77",
+          "eba-gl-2024-11-par-83",
+          "eba-gl-2024-11-par-89",
+          "eba-gl-2024-11-par-80",
+          "eba-gl-2024-11-par-78"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1733,
+        "eval_count": 157,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q034",
+      "statut": "repondable",
+      "question": "Dans quels cas les PSCA devraient-ils appliquer des mesures d'atténuation des risques pour les transferts impliquant une adresse auto-hébergée ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les PSCA devraient appliquer des mesures d'atténuation des risques lorsqu'ils savent ou apprennent que les informations relatives à l'initiateur ou au bénéficiaire utilisant une adresse auto-hébergée sont inexactes, ou lorsqu'ils sont confrontés à des schémas de transactions inhabituels ou suspects. Ils doivent également évaluer le risque associé à ces transferts en utilisant toutes les informations disponibles, notamment les schémas et les zones géographiques. Ces obligations s'appliquent notamment lorsque le transfert s'élève à 1 000 EUR ou excède ce montant.",
+      "citations": [
+        "eba-gl-2024-11-par-88",
+        "eba-gl-2024-11-par-87",
+        "eba-gl-2024-11-par-81"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Les PSCA devraient appliquer au moins l'une des mesures de l'article 19 bis, paragraphe 1, de la directive (UE) 2015/849, proportionnées aux risques, notamment lorsqu'ils savent ou apprennent que les informations sur l'initiateur ou le bénéficiaire utilisant l'adresse auto-hébergée sont inexactes, ou lorsqu'ils sont confrontés à des schémas de transactions inhabituels ou suspects ou à des risques de BC/FT plus élevés (paragraphe 88).",
+      "validation_question": "delegue",
+      "duree_s": 4.9,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 44.447783870919224,
+          "cosinus_top1": 0.7875798940658569
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-88",
+          "eba-gl-2024-11-par-87",
+          "eba-gl-2024-11-par-86",
+          "eba-gl-2024-11-par-89",
+          "eba-gl-2024-11-par-81"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1677,
+        "eval_count": 173,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q035",
+      "statut": "repondable",
+      "question": "Qu'est-ce qu'une adresse auto-hébergée et comment les PSCA déterminent-ils si une telle adresse est utilisée à l'autre extrémité d'un transfert ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Une adresse auto-hébergée est une adresse utilisée à l'autre extrémité d'un transfert dont la propriété ou le contrôle doit être vérifié par les PSCA. Les PSCA déterminent si une telle adresse est utilisée en s'appuyant sur des moyens techniques comme l'analyse des chaînes de blocs, les fournisseurs de données tiers et les identifiants de messagerie, ou en utilisant des méthodes de vérification spécifiques comme l'envoi d'un montant prédéfini ou la signature numérique.",
+      "citations": [
+        "eba-gl-2024-11-par-77",
+        "eba-gl-2024-11-par-83",
+        "eba-gl-2024-11-par-80"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Selon l'article 3, point 20, du règlement 2023/1113, c'est une adresse de registre distribué qui n'est liée ni à un prestataire de services sur crypto-actifs ni aux autres entités listées. Selon les orientations de l'ABE (paragraphe 77), les PSCA s'appuient sur les moyens techniques disponibles : analyse des chaînes de blocs, fournisseurs de données tiers, identifiants des systèmes de messagerie.",
+      "validation_question": "delegue",
+      "duree_s": 4.3,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 34.09076644887695,
+          "cosinus_top1": 0.7338383197784424
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "eba-gl-2024-11-par-77",
+          "eba-gl-2024-11-par-86",
+          "eba-gl-2024-11-par-83",
+          "eba-gl-2024-11-par-80",
+          "eba-gl-2024-11-par-78"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 1682,
+        "eval_count": 155,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q036",
+      "statut": "repondable",
+      "question": "Quel article du code monétaire et financier la position AMF DOC-2024-08 cite-t-elle parmi ses textes de référence ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "La position AMF DOC-2024-08 cite l'article L. 561-10-4 du code monétaire et financier parmi ses textes de référence. Elle mentionne également l'article L. 561-36, I, 2° du même code dans le cadre de la supervision des prestataires de services sur crypto-actifs.",
+      "citations": [
+        "amf-doc-2024-08-bloc-1"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "L'article L. 561-10-4 du code monétaire et financier, avec le règlement (UE) 2023/1113.",
+      "validation_question": "delegue",
+      "duree_s": 4.6,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 45.158439436389344,
+          "cosinus_top1": 0.6348017454147339
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "amf-doc-2024-08-bloc-1",
+          "ordonnance-2024-936-art-35",
+          "amf-doc-2024-08-p1-notes",
+          "ordonnance-2024-936-art-46",
+          "ordonnance-2024-936-art-36"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 2569,
+        "eval_count": 119,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q040",
+      "statut": "repondable",
+      "question": "À quelles dates les différentes dispositions de l'ordonnance n° 2024-936 entrent-elles en vigueur ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "Les dispositions des articles 1er, 2, 3, 5, 6, 8 à 13, 17, 20 (1° à 5°), 21 (2°), 22, 23 et 38 à 45 entrent en vigueur le 30 décembre 2024. Les articles 24 à 33 et 46 à 48 entrent en vigueur le 1er juillet 2026.",
+      "citations": [
+        "ordonnance-2024-936-art-49"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Selon l'article 49 : certains articles (1er, 2, 3, 5, 6, 8 à 13, 17, 22, 23 et 38 à 45, ainsi que des dispositions des articles 7, 20 et 21 précisées au texte) entrent en vigueur le 30 décembre 2024 ; les articles 24 à 33 et 46 à 48 entrent en vigueur le 1er juillet 2026.",
+      "validation_question": "delegue",
+      "duree_s": 6.0,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 30.08871826052859,
+          "cosinus_top1": 0.7399518489837646
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "ordonnance-2024-936-art-49",
+          "ordonnance-2024-936-art-47",
+          "ordonnance-2024-936-visas",
+          "ordonnance-2024-936-art-36",
+          "ordonnance-2024-936-art-43"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3255,
+        "eval_count": 156,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    },
+    {
+      "id": "q041",
+      "statut": "repondable",
+      "question": "Quel règlement européen l'ordonnance n° 2024-936 du 15 octobre 2024 mentionne-t-elle dans ses visas au sujet des marchés de crypto-actifs ?",
+      "reussite": true,
+      "raison": "répondu et sourcé",
+      "decision": "repondre",
+      "motif": null,
+      "couche_refus": null,
+      "reponse": "L'ordonnance n° 2024-936 du 15 octobre 2024 mentionne le règlement (UE) 2023/1114 du Parlement européen et du Conseil du 31 mai 2023 sur les marchés de crypto-actifs.",
+      "citations": [
+        "ordonnance-2024-936-visas"
+      ],
+      "controle_nombres": {
+        "ok": true,
+        "inconnus": []
+      },
+      "attendu": "Le règlement (UE) 2023/1114 du Parlement européen et du Conseil du 31 mai 2023 sur les marchés de crypto-actifs (MiCA).",
+      "validation_question": "delegue",
+      "duree_s": 5.1,
+      "diagnostic": {
+        "signaux": {
+          "bm25_top1": 24.14748183058029,
+          "cosinus_top1": 0.8243004083633423
+        },
+        "seuil_cosinus": 0.59,
+        "passages": [
+          "ordonnance-2024-936-visas",
+          "ordonnance-2024-936-art-47",
+          "ordonnance-2024-936-art-36",
+          "ordonnance-2024-936-art-43",
+          "ordonnance-2024-936-art-9"
+        ],
+        "modele": "qwen3.5:9b",
+        "prompt_eval_count": 3226,
+        "eval_count": 112,
+        "done_reason": "stop",
+        "num_ctx": 16384,
+        "essais": 1
+      }
+    }
+  ]
+}

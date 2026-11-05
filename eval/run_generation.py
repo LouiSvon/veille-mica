@@ -56,7 +56,7 @@ def main() -> int:
     p.add_argument("--modele", required=True)
     p.add_argument("--split", choices=("dev", "test"), default="dev")
     p.add_argument("--confirmer-test", action="store_true")
-    p.add_argument("--mode", default="hybride", choices=("bm25", "dense", "hybride"))
+    p.add_argument("--mode", default=Config.mode, choices=("bm25", "dense", "hybride"))
     p.add_argument("--seuil", type=float, default=Config.seuil_cosinus)
     a = p.parse_args()
     if a.split == "test" and not a.confirmer_test:
@@ -103,7 +103,7 @@ def main() -> int:
         "detail": detail,
     }
     nom = a.modele.replace(":", "-").replace("/", "-")
-    sortie = RACINE / "eval/reports" / f"generation-{rapport['date']}-{a.split}-{nom}.json"
+    sortie = RACINE / "eval/reports" / f"generation-{rapport['date']}-{a.split}-{nom}-{a.mode}.json"
     sortie.write_text(json.dumps(rapport, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("\nRésumé :")
     for statut, v in resume.items():

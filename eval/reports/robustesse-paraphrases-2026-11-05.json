@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-05",
+  "n": 10,
+  "recall_at_5": {
+    "bm25": "3/10",
+    "dense": "8/10",
+    "hybride": "8/10"
+  },
+  "avertissement": "exploratoire, paraphrases écrites par l'assistant",
+  "detail": [
+    {
+      "question_source": "q008",
+      "paraphrase": "Jusqu'à quand les prestataires déjà actifs peuvent-ils continuer sans agrément MiCA ?",
+      "reference": "mica-art-143",
+      "rangs": {
+        "bm25": 1,
+        "dense": null,
+        "hybride": 3
+      }
+    },
+    {
+      "question_source": "q008",
+      "paraphrase": "Jusqu'à quelle date la période transitoire permet-elle de continuer sans agrément ?",
+      "reference": "mica-art-143",
+      "rangs": {
+        "bm25": 1,
+        "dense": 1,
+        "hybride": 1
+      }
+    },
+    {
+      "question_source": "q008",
+      "paraphrase": "Les prestataires existants ont-ils un délai avant d'obtenir un agrément MiCA ?",
+      "reference": "mica-art-143",
+      "rangs": {
+        "bm25": 4,
+        "dense": null,
+        "hybride": null
+      }
+    },
+    {
+      "question_source": "q007",
+      "paraphrase": "Quand MiCA s'applique-t-il ?",
+      "reference": "mica-art-149",
+      "rangs": {
+        "bm25": null,
+        "dense": 1,
+        "hybride": 8
+      }
+    },
+    {
+      "question_source": "q007",
+      "paraphrase": "Date d'entrée en application du règlement MiCA",
+      "reference": "mica-art-149",
+      "rangs": {
+        "bm25": null,
+        "dense": 1,
+        "hybride": 1
+      }
+    },
+    {
+      "question_source": "q007",
+      "paraphrase": "MiCA est applicable depuis quand ?",
+      "reference": "mica-art-149",
+      "rangs": {
+        "bm25": null,
+        "dense": 1,
+        "hybride": 1
+      }
+    },
+    {
+      "question_source": "q010",
+      "paraphrase": "Quand les orientations de l'ABE sur les règles de voyage sont-elles applicables ?",
+      "reference": "eba-gl-2024-11-par-10",
+      "rangs": {
+        "bm25": null,
+        "dense": 1,
+        "hybride": 4
+      }
+    },
+    {
+      "question_source": "q010",
+      "paraphrase": "Date d'application des orientations EBA/GL/2024/11",
+      "reference": "eba-gl-2024-11-par-10",
+      "rangs": {
+        "bm25": 7,
+        "dense": 1,
+        "hybride": 2
+      }
+    },
+    {
+      "question_source": "q004",
+      "paraphrase": "Qu'est-ce qu'un crypto-actif dans MiCA ?",
+      "reference": "mica-art-3-p1-pt5",
+      "rangs": {
+        "bm25": null,
+        "dense": 1,
+        "hybride": 1
+      }
+    },
+    {
+      "question_source": "q004",
+      "paraphrase": "Définition de crypto-actif selon le règlement MiCA",
+      "reference": "mica-art-3-p1-pt5",
+      "rangs": {
+        "bm25": null,
+        "dense": 1,
+        "hybride": 2
+      }
+    }
+  ]
+}
