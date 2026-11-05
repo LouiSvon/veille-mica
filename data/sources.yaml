@@ -83,7 +83,8 @@ sources:
     octets: 228435
     volume_mesure: "2 pages, environ 850 mots. Cite le Q&A ESMA_QA_2295 en note de bas de page"
     reutilisation: a_fournir
-    statut: telecharge_et_lu_stabilite_a_confirmer
+    # Deux téléchargements à 2 secondes d'intervalle (2026-11-05) : même hash. Stabilité sur plusieurs jours : à reverifier.
+    statut: telecharge_et_lu
 
   - id: ordonnance-2024-936
     titre: "Ordonnance n° 2024-936 du 15 octobre 2024 relative aux marchés de crypto-actifs"
