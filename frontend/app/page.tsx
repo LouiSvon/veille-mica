@@ -49,7 +49,7 @@ export default function Page() {
           <div className="barre">
             <div className="marque">
               <span className="logo" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" strokeWidth="1.6"><path d="M3 2h7l3 3v9H3z" /><path d="M5.5 8h5M5.5 11h5" /></svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 2h7l3 3v9H3z" /><path d="M5.5 8h5M5.5 11h5" /></svg>
               </span>
               Veille MiCA
             </div>
