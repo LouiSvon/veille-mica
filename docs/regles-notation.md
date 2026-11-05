@@ -3,7 +3,7 @@ titre: Règles de notation de la génération (écrites avant la première exéc
 date_derniere_mise_a_jour: 2026-11-05
 ---
 
-Ceci n'est pas un conseil juridique. Ces règles fixent ce qui compte comme réussite ou échec, **avant** de voir les sorties du modèle, pour ne pas les ajuster après coup.
+Ceci n'est pas un conseil juridique. Ces règles fixent ce qui compte comme réussite ou échec. Elles ont été rédigées avant la première exécution de la génération, mais commitées après (l'historique git ne le prouve donc pas) ; les corrections faites ensuite sont listées plus bas, datées.
 
 ## Principes
 
@@ -49,7 +49,7 @@ Le statut précis d'une question « piège » est lu dans son champ `comportemen
 
 ## Corrections faites après le premier run du dev (2026-11-05), signalées comme telles
 
-Ces deux modifications viennent d'un défaut constaté dans les sorties, pas d'une recherche d'un meilleur score. Le rapport du premier run est conservé : `eval/reports/generation-2026-11-05-dev-qwen3.5-9b-run1-avant-correction.json`.
+Ces deux modifications viennent d'un défaut constaté dans les sorties, pas d'une recherche d'un meilleur score. Le rapport du premier run est conservé : `eval/reports/generation-2026-11-05-dev-qwen3.5-9b-hybride-run1-avant-correction.json`.
 
 1. **Nombres de la question autorisés dans le contrôle.** Au premier run, le modèle a correctement refusé q019 (« les passages fournis ne contiennent aucune information sur le règlement AMLR (UE) 2024/1624 »), mais le contrôle des nombres a rejeté ce refus parce que « 1624 » et « 2024 » ne figurent dans aucun passage cité (il n'y en avait aucun). Un refus qui reprend le numéro demandé n'invente rien. Désormais, les nombres de la question sont autorisés. Une date absente de la question et des passages (comme « 10 juillet 2027 ») reste rejetée : tests dédiés, cas positif et négatif.
 2. **Consigne du prompt** : ne pas écrire les étiquettes P1, P2... dans la réponse (q016 avait écrit « selon les passages P1 et P3 », que le lecteur ne voit pas).
@@ -72,3 +72,9 @@ Cette correction vient d'un défaut de conception constaté sur des refus correc
 - **Règle v2 essayée** : minimum pris aussi sur les reformulations, soit un seuil de 0,52. Résultat sur le dev (15 questions, mode vectoriel) : 13 réussites sur 15. Deux échecs : q016, où la recherche ne ramène pas la position AMF et le modèle refuse (limite de recherche, pas une invention) ; q039, où le modèle **répond** que les orientations ESMA s'appliquent en France en citant des articles sans rapport. Cette réponse non fondée passe les contrôles automatiques (les nombres sont présents dans les passages cités).
 - **Décision** : on garde la règle v1 (0,59). Pour un outil de veille juridique, une réponse non fondée est plus grave qu'un faux refus. Le prix, mesuré sur la sonde, est que des reformulations vagues ou courtes peuvent être refusées à tort : l'interface le dit et suggère de reformuler.
 - **Limite non résolue** : le contrôle des nombres ne détecte pas une phrase fausse qui n'utilise que des nombres présents dans les passages cités (cas q039 à 0,52). Aucune vérification automatique de fidélité du raisonnement n'existe.
+
+## Quatrième correction, après la relecture indépendante (2026-11-05)
+
+- **Nombres de la question** : ils sont tolérés uniquement dans un **refus**. Dans une réponse, un nombre repris de la question (« jusqu'au 10 juillet 2027 ? ») ne valide plus la réponse. La relecture des sorties déjà enregistrées (dev et test) montre qu'aucune réponse mesurée ne change avec cette règle plus stricte.
+- **Pannes techniques** : une panne du modèle ou de la recherche (Ollama injoignable) devient un refus de sécurité `echec_technique`, jamais une exception.
+- **Limite de la règle de réussite** : pour une question à plusieurs passages de référence, une seule citation parmi eux suffit à compter comme « sourcée ». Cas q035 : une moitié de la réponse était fausse.

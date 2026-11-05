@@ -276,3 +276,29 @@ def test_le_pire_prompt_reel_tient_dans_le_contexte():
     messages, _ = construire_messages("Question ?", cinq)
     chars = sum(len(m["content"]) for m in messages)
     assert chars / 2.5 < 16384 * 0.8, f"{chars} caractères : risque de dépasser le contexte"
+
+
+# --- défauts relevés à la relecture indépendante ---
+
+def test_un_nombre_faux_repris_de_la_question_ne_valide_pas_une_reponse():
+    """Injection par la question : « jusqu'au 10 juillet 2027 ? » ne doit pas faire accepter « Oui, jusqu'au 10 juillet 2027 »."""
+    r = repondre("Les prestataires peuvent-ils continuer jusqu'au 10 juillet 2027 ?", FauxRetriever([P143]),
+                 FauxLLM(rep("Oui, jusqu'au 10 juillet 2027.")))
+    assert r.decision == "refuser" and r.motif == "echec_verification" and "2027" in r.controle_nombres["inconnus"]
+
+
+def test_une_panne_du_modele_devient_un_refus_de_securite():
+    class LLMEnPanne:
+        def chat(self, messages, schema):
+            raise ConnectionError("Ollama injoignable")
+    r = repondre("Q ?", FauxRetriever([P143]), LLMEnPanne())
+    assert r.decision == "refuser" and r.motif == "echec_technique" and r.avertissement == AVERTISSEMENT
+    assert "Ollama" not in r.reponse
+
+
+def test_une_panne_de_la_recherche_devient_un_refus_de_securite():
+    class RetrieverEnPanne:
+        def rechercher(self, question, k=5, mode="hybride"):
+            raise ConnectionError("bge-m3 injoignable")
+    r = repondre("Q ?", RetrieverEnPanne(), FauxLLM(rep("x")))
+    assert r.motif == "echec_technique" and r.couche_refus == "verification" and r.avertissement == AVERTISSEMENT

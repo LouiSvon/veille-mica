@@ -4,7 +4,7 @@ Usage :
     backend/.venv/bin/python eval/run_retrieval.py                 # questions de développement (réglage)
     backend/.venv/bin/python eval/run_retrieval.py --split test    # test figé : à ne lancer qu'une fois la configuration arrêtée
 
-Seules les questions "répondables" et validées par Louis comptent. Le rapport est daté et écrit dans eval/reports/.
+Seules les questions "répondables" validées (par Louis) ou déléguées (choisies par l'assistant) comptent ; le rapport les distingue. Le rapport est daté et écrit dans eval/reports/.
 Le test figé n'est pas utilisé pour régler le système : le script demande une confirmation explicite.
 """
 import argparse

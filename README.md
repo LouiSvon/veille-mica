@@ -9,15 +9,17 @@ date_derniere_mise_a_jour: 2026-11-05
 
 Assistant de recherche (RAG) qui répond en français à des questions sur la réglementation européenne et française des crypto-actifs (MiCA et textes liés). Chaque réponse affiche **le texte exact du passage officiel utilisé**, avec sa version, sa date de consultation et un lien vers la source. Si les textes du corpus ne permettent pas de répondre, l'assistant **refuse et dit pourquoi** au lieu d'inventer.
 
-Projet personnel d'apprentissage : construire un cas d'usage d'IA générative avec une évaluation mesurée, ses limites comprises. 100 % local (Ollama), aucune API payante, pas de démo en ligne. Développé avec l'aide de l'assistant IA Claude (Anthropic) : voir « Lecture honnête ».
+Projet personnel d'apprentissage : construire un cas d'usage d'IA générative avec une évaluation mesurée, ses limites comprises. 100 % local (Ollama), aucune API payante, pas de démo en ligne. Développé avec l'aide de l'assistant IA Claude : voir « Lecture honnête ».
 
 ## Ce que ça donne
 
+Sorties réelles du 2026-11-05 (extraits, configuration livrée).
+
 Question : « Quelles orientations antérieures les orientations de l'ABE sur la travel rule abrogent-elles, et à quelle date ? »
 
-Réponse : les orientations communes prises en application de l'article 25 du règlement (UE) 2015/847 sont abrogées avec effet au 30 décembre 2024. Citation affichée : « paragraphe 11 », EBA/GL/2024/11, non contraignant, avec le texte du paragraphe et le lien de la source.
+Réponse (début) : « Les orientations antérieures abrogées sont celles relatives aux mesures que les prestataires de services de paiement doivent prendre pour détecter des informations manquantes ou incomplètes sur le donneur d'ordre ou le bénéficiaire, ainsi que les procédures devant être mises en place pour gérer un transfert de fonds qui n'est pas accompagné des informations requises. Cette abrogation prend effet au 30 décembre 2024. » Citation affichée : « paragraphe 11 », EBA/GL/2024/11, marquée non contraignante, avec le texte exact du paragraphe et le lien de la source.
 
-Question hors corpus : « Quel est le taux d'imposition des plus-values sur crypto-actifs en France ? » Refus : le sujet n'est pas couvert par les textes du corpus.
+Question hors corpus : « Quel est le taux d'imposition des plus-values sur crypto-actifs en France ? » Réponse : « Cette question ne porte pas sur un sujet couvert par les textes du corpus : je ne peux pas y répondre sans inventer. »
 
 ## Démarrage rapide
 
@@ -61,7 +63,7 @@ Détails et alternatives : [docs/choix-techniques.md](docs/choix-techniques.md).
 
 ## Évaluation et résultats mesurés
 
-42 questions en JSONL ([eval/questions.jsonl](eval/questions.jsonl)), chacune avec des extraits de référence **vérifiés mot pour mot par un test** : 15 pour le réglage (« dev »), 27 pour un test mis de côté. 12 ne sont pas répondables : 6 hors corpus et 6 pièges (texte inexistant, demande d'avis sur un cas particulier), dont 8 dans le dev et 4 dans le test. Les règles de réussite ont été écrites avant les premières exécutions : [docs/regles-notation.md](docs/regles-notation.md). Les chiffres viennent des scripts `eval/`, rapports datés dans `eval/reports/`. Les effectifs sont petits : l'intervalle de Wilson à 95 % est donné.
+42 questions en JSONL ([eval/questions.jsonl](eval/questions.jsonl)), chaque question répondable avec des extraits de référence **vérifiés mot pour mot par un test** : 15 pour le réglage (« dev »), 27 pour un test mis de côté. 12 ne sont pas répondables : 6 hors corpus et 6 pièges (texte inexistant, demande d'avis sur un cas particulier), dont 8 dans le dev et 4 dans le test. Les règles de réussite sont dans [docs/regles-notation.md](docs/regles-notation.md) : rédigées avant la première exécution de la génération, mais commitées après (l'historique git ne le prouve pas) et corrigées ensuite à quatre reprises, chaque correction étant datée dans le document. Les chiffres viennent des scripts `eval/`, rapports datés dans `eval/reports/`. Les effectifs sont petits : l'intervalle de Wilson à 95 % est donné.
 
 ### Recherche (test, 23 questions répondables : le bon passage est-il dans les 5 premiers ?)
 
@@ -75,17 +77,19 @@ Détails et alternatives : [docs/choix-techniques.md](docs/choix-techniques.md).
 
 | Configuration | Répondues et sourcées | Refus justifiés hors corpus | Refus d'avis juridique | Total |
 |---|---|---|---|---|
-| Hybride, seuil 0,59 (**fixée avant de lire le test**) | 18/23 | 2/2 | 2/2 | 22/27 |
-| Vecteurs, seuil 0,59 (**livrée, mesurée après avoir vu le test : exploratoire**) | 21/23 | 2/2 | 1/2 | 24/27 |
+| Hybride, seuil 0,59 (**fixée avant de lire le test**) | 18/23 (0,58 à 0,90) | 2/2 (0,34 à 1,00) | 2/2 (0,34 à 1,00) | 22/27 (0,63 à 0,92) |
+| Vecteurs, seuil 0,59 (**livrée, mesurée après avoir vu le test : exploratoire**) | 21/23 (0,73 à 0,98) | 2/2 (0,34 à 1,00) | 1/2 (0,09 à 0,91) | 24/27 (0,72 à 0,96) |
 
-- **Réponses correctes** (notation de l'assistant, non vérifiée par Louis, configuration livrée) : 19 sur 23 questions répondables (Wilson 95 % : 0,63 à 0,93). Deux réponses sourcées sont fausses : q035 (source juste, définition prise à un paragraphe voisin) et q040 (énumération généralisée à tort).
+Intervalles de Wilson à 95 % entre parenthèses. « Sourcée » veut dire : décision de répondre, au moins une citation parmi les passages de référence, contrôle des nombres réussi. Pour une question à deux références, une seule suffit à compter comme sourcée.
+
+- **Réponses correctes** (notation de l'assistant, non vérifiée par Louis, configuration livrée) : 19 sur 23 questions répondables (Wilson 95 % : 0,63 à 0,93). Deux réponses sourcées sont fausses : q035 (la définition du règlement n'a été ni retrouvée ni citée ; la réponse reprend une formule d'un paragraphe voisin des orientations, et la règle « au moins une référence » l'a quand même comptée comme sourcée) et q040 (énumération généralisée à tort).
 - **Faux refus** (configuration livrée) : 1 sur 23 répondables (q015). Une réponse sourcée sur le mauvais paragraphe (q028) et un refus avec le mauvais motif (q024 : `hors_corpus` au lieu de `avis_juridique`). Le dev (15 questions, configuration livrée) donne 14/15 ; l'échec est un faux refus sur une question à deux volets (q016).
 - Un échec de format a produit deux refus de sécurité en configuration hybride (q025, q031).
 
 ### Lecture honnête
 
 - **Aucune question n'a été écrite à la main par l'auteur du dépôt** : 23 ont été proposées par l'assistant IA (Claude) puis validées une par une par l'auteur ; 19 ont été choisies par l'assistant sur délégation, sans relecture individuelle. La même source a écrit les questions et une grande partie du système : biais probable, non mesuré.
-- **Le test a été lu trois fois** (recherche, hybride, vecteurs) : la configuration livrée a été choisie après avoir vu le test, même si le jeu de réglage indiquait déjà que les vecteurs seuls faisaient au moins aussi bien. Un jeu neuf est nécessaire pour une mesure propre.
+- **Le test a été lu trois fois** (recherche, hybride, vecteurs) : la configuration livrée a été choisie après avoir vu le test. Sur le jeu de réglage, la recherche vectorielle seule faisait au moins aussi bien que l'hybride (MRR 1,00 contre 0,93), mais de bout en bout l'hybride avait fait 15/15 contre 14/15 pour les vecteurs, et ce run en vectoriel a eu lieu après les lectures du test. Un jeu neuf est nécessaire pour une mesure propre.
 - **Petits effectifs** : 23 à 27 questions, intervalles larges.
 - **Sensibilité à la formulation** : sur 10 reformulations, 8 retrouvent le bon passage, mais 2 sont refusées à tort par le seuil. Choix assumé : mieux vaut un faux refus qu'une réponse non fondée ([analyse](docs/analyse-erreurs.md)).
 - **« Sourcé » n'est pas « correct »** : une citation exacte peut accompagner une réponse inexacte. Affichez et lisez le texte cité.
@@ -105,7 +109,7 @@ Liste détaillée et datée : [docs/limites.md](docs/limites.md). L'essentiel :
 ```
 data/sources.yaml     registre des sources (URL, version, date, hash)
 backend/app/          chunking, retrieval, generation (schéma, prompt, contrôles), api (FastAPI)
-backend/tests/        99 tests
+backend/tests/        107 tests
 frontend/             interface Next.js (TypeScript)
 eval/                 questions.jsonl, run_retrieval.py, run_generation.py, calibrer_seuil.py, probe_paraphrases.py, reports/
 scripts/              telecharger.py (téléchargement et vérification des hash)

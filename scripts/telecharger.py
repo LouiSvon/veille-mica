@@ -63,12 +63,18 @@ def traiter(source: dict, dossier: Path, verifier_seulement: bool, forcer: bool 
         return "déjà présent, hash identique : non retéléchargé"
     donnees = telecharger(source["url_telechargement"], source.get("en_tetes") or {})
     dossier.mkdir(parents=True, exist_ok=True)
-    cible.write_bytes(donnees)
     empreinte = sha256_octets(donnees)
     attendu = source["sha256"]
     if attendu == "a_fournir":
+        cible.write_bytes(donnees)
         return f"téléchargé, {len(donnees)} octets, sha256 {empreinte} (à inscrire dans le registre, le {date.today()})"
-    return f"téléchargé, {'identique' if empreinte == attendu else 'DIFFERENT'} au registre"
+    if empreinte == attendu:
+        cible.write_bytes(donnees)
+        return "téléchargé, identique au registre"
+    # Le texte distant a changé : la copie locale déjà vérifiée est conservée, la nouvelle version est mise à côté.
+    nouveau = cible.with_name(cible.name + ".nouveau")
+    nouveau.write_bytes(donnees)
+    return f"DIFFERENT du registre : copie existante conservée, nouvelle version dans {nouveau.name} (sha256 {empreinte})"
 
 
 def main(argv=None) -> int:

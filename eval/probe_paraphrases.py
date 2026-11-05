@@ -1,6 +1,6 @@
 """Sonde exploratoire : le passage de référence reste-t-il retrouvé quand la question est reformulée ?
 
-Ce n'est pas un score du jeu validé : les paraphrases sont écrites par l'assistant, la taille est petite (n = 12),
+Ce n'est pas un score du jeu validé : les paraphrases sont écrites par l'assistant, la taille est petite (n = 10),
 et la sonde ne sert qu'à documenter une sensibilité à la formulation observée dans l'interface.
 Retrieval seul (pas de génération). Écrit eval/reports/robustesse-paraphrases-<date>.json.
 """

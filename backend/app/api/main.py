@@ -7,9 +7,13 @@ import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+import logging
+
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from app.generation.llm import LLM, OllamaLLM
 from app.generation.pipeline import Config, repondre
@@ -22,8 +26,18 @@ MODELE_PAR_DEFAUT = "qwen3.5:9b"
 ORIGINES_AUTORISEES = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
 
+journal = logging.getLogger("veille")
+DIAGNOSTIC_INTERNE = ("reponse_rejetee", "erreurs_format")  # jamais renvoyés au client : texte du modèle non vérifié
+
+
 class Question(BaseModel):
     question: str = Field(min_length=3, max_length=1000)
+
+    @field_validator("question", mode="before")
+    @classmethod
+    def sans_espaces_autour(cls, v):
+        # Le contrôle de longueur doit porter sur la question réelle, pas sur des espaces.
+        return v.strip() if isinstance(v, str) else v
 
 
 class Etat(BaseModel):
@@ -54,6 +68,15 @@ def creer_app(retriever=None, llm: LLM | None = None, config: Config | None = No
                   description=AVERTISSEMENT + " Assistant de recherche dans des textes officiels, sans avis juridique.")
     app.add_middleware(CORSMiddleware, allow_origins=ORIGINES_AUTORISEES, allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
+    @app.exception_handler(RequestValidationError)
+    async def entree_invalide(_req: Request, _exc: RequestValidationError):
+        return JSONResponse(status_code=422, content={"detail": "Question invalide : 3 à 1000 caractères.", "avertissement": AVERTISSEMENT})
+
+    @app.exception_handler(Exception)
+    async def erreur_interne(_req: Request, exc: Exception):
+        journal.error("erreur interne : %s", type(exc).__name__)
+        return JSONResponse(status_code=500, content={"detail": "Erreur interne.", "avertissement": AVERTISSEMENT})
+
     @app.get("/health", response_model=Etat)
     def sante() -> Etat:
         passages = contexte["retriever"].passages
@@ -67,7 +90,12 @@ def creer_app(retriever=None, llm: LLM | None = None, config: Config | None = No
 
     @app.post("/ask", response_model=ReponseAssistant)
     def demander(corps: Question) -> ReponseAssistant:
-        return repondre(corps.question.strip(), contexte["retriever"], contexte["llm"], contexte["config"])
+        r = repondre(corps.question, contexte["retriever"], contexte["llm"], contexte["config"])
+        for cle in DIAGNOSTIC_INTERNE:
+            texte = r.diagnostic.pop(cle, None)
+            if texte:
+                journal.info("diagnostic %s écarté de la réponse (%d caractères)", cle, len(str(texte)))
+        return r
 
     return app
 

@@ -19,7 +19,7 @@ sources:
     date_consultation: "2026-11-05"
     sha256: "74d02d6db11e8d6a532c696edd0f317a268476f64df72af33c12661d87af9ec0"
     octets: 1818452
-    volume_mesure: "149 articles, 6 annexes, 533 passages"
+    volume_mesure: "149 articles, 6 annexes, 597 passages"
     reutilisation: "EUR-Lex : décision 2011/833/UE (notice légale lue par recherche, 2026-11-05)"
     statut: telecharge_et_lu
 
@@ -40,7 +40,7 @@ sources:
     date_consultation: "2026-11-05"
     sha256: "d8e5382a21250dc0a8431b69097cb7eab2ce579430afccfbb98113ae63e11181"
     octets: 356796
-    volume_mesure: "40 articles, 71 passages"
+    volume_mesure: "40 articles, 94 passages"
     reutilisation: "EUR-Lex : décision 2011/833/UE (notice légale lue par recherche, 2026-11-05)"
     statut: telecharge_et_lu
 
@@ -83,7 +83,7 @@ sources:
     octets: 228435
     volume_mesure: "2 pages, environ 850 mots. Cite le Q&A ESMA_QA_2295 en note de bas de page"
     reutilisation: a_fournir
-    # Deux téléchargements à 2 secondes d'intervalle (2026-11-05) : même hash. Stabilité sur plusieurs jours : à reverifier.
+    # Trois téléchargements en quelques secondes (2026-11-05) : même hash. Stabilité sur plusieurs jours : à reverifier.
     statut: telecharge_et_lu
 
   - id: ordonnance-2024-936

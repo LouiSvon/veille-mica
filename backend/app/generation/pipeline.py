@@ -3,7 +3,8 @@
 Garanties (testées avec un faux modèle) :
 - le texte des citations vient toujours de la base, jamais du modèle ;
 - une étiquette hors des passages envoyés est rejetée ;
-- une réponse sans citation, tronquée ou dont les nombres ne se retrouvent pas dans les passages cités devient un refus ;
+- une réponse sans citation, tronquée ou dont les nombres ne se retrouvent pas dans les passages cités devient un refus (un refus peut reprendre les nombres de la question et des passages retrouvés) ;
+- une panne du modèle ou de la recherche devient un refus de sécurité `echec_technique` ;
 - chaque sortie porte l'avertissement « Ceci n'est pas un conseil juridique ».
 """
 import json
@@ -64,7 +65,10 @@ def _refus(motif: str, couche: str | None, diagnostic: dict, reponse: str | None
 
 def repondre(question: str, retriever, llm: LLM, config: Config | None = None) -> ReponseAssistant:
     cfg = config or Config()
-    resultats, signaux = retriever.rechercher(question, k=cfg.k, mode=cfg.mode)
+    try:
+        resultats, signaux = retriever.rechercher(question, k=cfg.k, mode=cfg.mode)
+    except Exception as e:  # Ollama ou l'index indisponible : refus de sécurité, jamais une exception brute
+        return _refus("echec_technique", "verification", {"erreur": f"recherche : {type(e).__name__}"})
     diag: dict = {"signaux": signaux, "seuil_cosinus": cfg.seuil_cosinus, "passages": [r["passage"]["chunk_id"] for r in resultats]}
 
     # Couche 1 : filtre sur le meilleur cosinus, sans appeler le modèle.
@@ -78,7 +82,11 @@ def repondre(question: str, retriever, llm: LLM, config: Config | None = None) -
     sortie: SortieModele | None = None
     erreurs: list[str] = []
     for essai in range(1, cfg.essais + 1):
-        res = llm.chat(messages, schema)
+        try:
+            res = llm.chat(messages, schema)
+        except Exception as e:  # modèle indisponible, délai dépassé, réponse HTTP invalide
+            diag["erreur"] = f"modèle : {type(e).__name__}"
+            return _refus("echec_technique", "verification", diag)
         diag.update({"modele": res.modele, "prompt_eval_count": res.prompt_eval_count, "eval_count": res.eval_count,
                      "done_reason": res.done_reason, "num_ctx": res.num_ctx, "essais": essai})
         # Ollama ne signale pas une troncature du prompt : on la détecte par le décompte de tokens.
@@ -107,7 +115,9 @@ def repondre(question: str, retriever, llm: LLM, config: Config | None = None) -
     # tous les passages retrouvés. Une date tirée de la mémoire du modèle reste rejetée dans les deux cas.
     base_nombres = cites if sortie.decision == "repondre" else passages
     texte_reponse = remplacer_etiquettes(sortie.reponse, par_etiquette)
-    verif = controle_nombres(texte_reponse, base_nombres, question)
+    # Les nombres de la question ne sont tolérés que pour un refus qui la reformule. Dans une réponse, un nombre repris de la
+    # question (« jusqu'au 10 juillet 2027 ? ») ne doit pas être validé par la question elle-même.
+    verif = controle_nombres(texte_reponse, base_nombres, question if sortie.decision == "refuser" else "")
     if not verif["ok"]:
         diag["reponse_rejetee"] = texte_reponse
         diag["motif_modele"] = sortie.motif

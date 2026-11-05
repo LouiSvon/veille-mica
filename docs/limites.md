@@ -79,3 +79,9 @@ Ce ne sont pas des scores : les questions sont proposées par l'assistant et pas
 - Le seuil de refus (0,59) est dérivé de 7 points du dev. Il refuse à tort environ 2 reformulations correctes sur 10 ; un seuil plus bas a laissé passer une réponse non fondée.
 - Les cosinus de bge-m3 sont compressés entre environ 0,5 et 0,8 : la séparation entre répondable et hors corpus par un seuil est fragile.
 - Latence mesurée : environ 2 à 7 s par question appelant le modèle (qwen3.5:9b), sur un Mac M5 Pro avec 24 Go. Non mesurée sur une autre machine.
+
+## Relecture indépendante : limites ajoutées (2026-11-05)
+
+- La règle « sourcée » compte une question à deux références comme réussie dès qu'une seule est citée (cas q035).
+- De bout en bout sur le dev, l'hybride a fait 15/15 et les vecteurs 14/15 ; sur le test, les vecteurs ont fait mieux en recherche. Les échantillons sont trop petits pour trancher.
+- Les métadonnées des commits git contiennent l'adresse e-mail personnelle de l'auteur : à traiter (réécriture d'historique ou adresse de remplacement) avant toute publication, décision de Louis.

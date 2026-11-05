@@ -32,7 +32,7 @@ Réalisée après avoir vu le test hybride : à lire comme post hoc.
 
 **Justesse du contenu** (notation de l'assistant, non vérifiée par Louis) sur les 21 réponses sourcées : 19 correctes, 2 fautives.
 
-- **q035** : la définition du règlement 2023/1113 (article 3, point 20) était citée, mais la réponse donne comme définition de l'adresse auto-hébergée une formule tirée d'un paragraphe voisin des orientations de l'ABE. Cas de **source juste, contenu faux** : le contrôle de citation et le contrôle des nombres ne l'attrapent pas.
+- **q035** : la définition du règlement 2023/1113 (article 3, point 20) n'a été ni retrouvée ni citée : parmi les cinq passages envoyés, il n'y avait que des paragraphes des orientations de l'ABE, et le modèle n'en a cité qu'un (le paragraphe 77). La réponse donne comme définition de l'adresse auto-hébergée une formule tirée d'un paragraphe voisin (le 86). Les contrôles de citation et de nombres ne l'attrapent pas, et la règle « au moins une citation de référence » l'a comptée comme sourcée parce que le paragraphe 77, seconde référence de la question, était cité. C'est une faiblesse de la règle de notation, pas seulement du système.
 - **q040** : la réponse écrit « articles 20 à 23 » alors que les articles 20 et 21 ne sont concernés qu'en partie. Généralisation exagérée d'une énumération.
 - **Détails non vérifiés** : q013, q033 et q034 ajoutent des précisions au-delà de la question (taux de change, vérifications, évaluation du risque) qui semblent provenir de paragraphes voisins ; je n'ai pas vérifié chacune.
 

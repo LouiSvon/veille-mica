@@ -4,7 +4,7 @@ Usage :
     backend/.venv/bin/python eval/run_generation.py --modele qwen3.5:9b                  # questions de développement
     backend/.venv/bin/python eval/run_generation.py --modele X --split test --confirmer-test
 
-Les règles de réussite sont celles de docs/regles-notation.md, écrites avant la première exécution :
+Les règles de réussite sont celles de docs/regles-notation.md, rédigées avant la première exécution de la génération (puis corrigées, voir ce document) :
 - repondable : décision « repondre », une citation parmi les passages de référence, contrôle des nombres réussi ;
 - hors_corpus et piège sur texte inexistant : refus de motif hors_corpus ou passages_insuffisants ;
 - piège d'avis juridique (q023, q024 en test ; q042, q043 en développement) : refus de motif avis_juridique.

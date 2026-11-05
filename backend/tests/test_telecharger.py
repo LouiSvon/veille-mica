@@ -90,3 +90,16 @@ def test_forcer_retelecharge_meme_un_fichier_identique(tmp_path):
     raw.mkdir()
     (raw / "x.bin").write_bytes(local)
     assert "non retéléchargé" not in tel.traiter(s, raw, verifier_seulement=False, forcer=True)
+
+
+def test_une_copie_verifiee_n_est_jamais_ecrasee_par_une_version_differente(tmp_path):
+    """Le registre fait foi : si le texte distant a changé, l'ancien fichier reste et la nouvelle version est mise à côté."""
+    local = b"version verifiee"
+    s = source(tmp_path, b"version distante modifiee", hashlib.sha256(local).hexdigest())
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "x.bin").write_bytes(local)
+    res = tel.traiter(s, raw, verifier_seulement=False, forcer=True)
+    assert "DIFFERENT" in res and "conservée" in res
+    assert (raw / "x.bin").read_bytes() == local
+    assert (raw / "x.bin.nouveau").read_bytes() == b"version distante modifiee"

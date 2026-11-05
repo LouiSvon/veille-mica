@@ -2,6 +2,7 @@ import json
 
 from fastapi.testclient import TestClient
 
+from app.api import main as api_main
 from app.api.main import creer_app
 from app.generation.schema import AVERTISSEMENT
 from tests.test_generation import P143, FauxLLM, FauxRetriever, rep
@@ -56,3 +57,35 @@ def test_une_erreur_du_modele_ne_fuit_pas_en_reponse_inventee():
         corps = c.post("/ask", json={"question": "Q ?"}).json()
     assert corps["decision"] == "refuser" and corps["motif"] == "echec_format" and corps["citations"] == []
     assert json.loads(json.dumps(corps))["avertissement"] == AVERTISSEMENT
+
+
+def test_entree_invalide_renvoie_un_json_avec_avertissement():
+    with client() as c:
+        r = c.post("/ask", json={"question": "ab"})
+    assert r.status_code == 422 and r.json()["avertissement"] == AVERTISSEMENT
+
+
+def test_question_faite_d_espaces_est_refusee_avant_toute_recherche():
+    llm = FauxLLM(rep("x"))
+    with client(llm=llm) as c:
+        assert c.post("/ask", json={"question": "     "}).status_code == 422
+        assert c.post("/ask", json={"question": "  ab  "}).status_code == 422
+    assert llm.appels == []
+
+
+def test_erreur_interne_renvoie_un_500_json_avec_avertissement_sans_detail(monkeypatch):
+    def boum(*a, **k):
+        raise RuntimeError("secret interne /chemin/prive")
+    monkeypatch.setattr(api_main, "repondre", boum)
+    with TestClient(creer_app(FauxRetriever([P143]), FauxLLM(rep("x"))), raise_server_exceptions=False) as c:
+        r = c.post("/ask", json={"question": "Question valide ?"})
+    assert r.status_code == 500 and r.json()["avertissement"] == AVERTISSEMENT
+    assert "secret" not in r.text and "chemin" not in r.text
+
+
+def test_le_texte_non_verifie_du_modele_n_est_pas_renvoye_au_client():
+    with client(llm=FauxLLM(rep("La date est le 10 juillet 2027."))) as c:
+        corps = c.post("/ask", json={"question": "Une question ?"}).json()
+    assert corps["motif"] == "echec_verification"
+    assert "reponse_rejetee" not in corps["diagnostic"] and "2027" not in json.dumps(corps["diagnostic"])
+    assert "2027" in corps["controle_nombres"]["inconnus"]

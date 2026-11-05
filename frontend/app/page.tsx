@@ -9,6 +9,8 @@ const EXEMPLES = [
   "À partir de quelle date les orientations de l'ABE sur la travel rule s'appliquent-elles ?",
 ];
 
+class ErreurApi extends Error {}
+
 export default function Page() {
   const [question, setQuestion] = useState("");
   const [reponse, setReponse] = useState<Reponse | null>(null);
@@ -31,10 +33,10 @@ export default function Page() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q }),
       });
-      if (!r.ok) throw new Error(r.status === 422 ? "Question refusée par l'API (3 à 1000 caractères)." : `Erreur ${r.status} de l'API.`);
+      if (!r.ok) throw new ErreurApi(r.status === 422 ? "Question refusée par l'API (3 à 1000 caractères)." : `Erreur ${r.status} de l'API locale : le service de génération est peut-être arrêté (Ollama).`);
       setReponse((await r.json()) as Reponse);
     } catch (err) {
-      setErreur(err instanceof Error && err.message.startsWith("Question") ? err.message : "L'API locale ne répond pas. Lancez le backend (voir le README), puis réessayez.");
+      setErreur(err instanceof ErreurApi ? err.message : "L'API locale ne répond pas. Lancez le backend (voir le README), puis réessayez.");
     } finally {
       setEnCours(false);
     }

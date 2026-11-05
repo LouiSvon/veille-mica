@@ -68,10 +68,10 @@
       },
       "attendu": "Selon l'article 14, paragraphe 1, du règlement 2023/1113 : le nom de l'initiateur ; son adresse de registre distribué (et son numéro de compte de crypto-actifs s'il existe) ou, hors DLT, son numéro de compte de crypto-actifs ; son adresse (avec le pays, le numéro du document d'identité officiel et le numéro d'identification de client, ou la date et le lieu de naissance) ; et, s'il est fourni, l'IEJ ou un identifiant officiel équivalent.",
       "validation_question": "valide",
-      "duree_s": 3.7,
+      "duree_s": 4.4,
       "diagnostic": {
         "signaux": {
-          "bm25_top1": 19.760014739384133,
+          "bm25_top1": 19.760014739384125,
           "cosinus_top1": 0.8066027164459229
         },
         "seuil_cosinus": 0.59,
@@ -109,10 +109,10 @@
       },
       "attendu": "Non en principe : l'article 59, paragraphe 1, de MiCA réserve ces services aux personnes agréées comme prestataires de services sur crypto-actifs (article 63) et à certaines entités déjà autorisées (établissements de crédit, dépositaires centraux de titres, entreprises d'investissement, opérateurs de marché, établissements de monnaie électronique, sociétés de gestion d'OPCVM, gestionnaires de FIA) conformément à l'article 60.",
       "validation_question": "valide",
-      "duree_s": 3.6,
+      "duree_s": 3.8,
       "diagnostic": {
         "signaux": {
-          "bm25_top1": 15.150957115298525,
+          "bm25_top1": 15.150957115298526,
           "cosinus_top1": 0.7708102464675903
         },
         "seuil_cosinus": 0.59,
@@ -150,7 +150,7 @@
       },
       "attendu": "Une représentation numérique d'une valeur ou d'un droit pouvant être transférée et stockée de manière électronique, au moyen de la technologie des registres distribués ou d'une technologie similaire (article 3, point 5).",
       "validation_question": "valide",
-      "duree_s": 1.8,
+      "duree_s": 1.7,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 6.270690161517225,
@@ -191,7 +191,7 @@
       },
       "attendu": "À partir du 30 décembre 2024 de manière générale ; par dérogation, les titres III et IV (jetons se référant à un ou des actifs et jetons de monnaie électronique) sont applicables à partir du 30 juin 2024 (article 149).",
       "validation_question": "valide",
-      "duree_s": 5.7,
+      "duree_s": 5.2,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 8.92885241682115,
@@ -232,10 +232,10 @@
       },
       "attendu": "Jusqu'au 1er juillet 2026 ou jusqu'à ce qu'ils se voient octroyer ou refuser un agrément en vertu de l'article 63, l'événement survenant en premier lieu étant retenu (article 143, paragraphe 3). Les États membres peuvent décider de ne pas appliquer ce régime transitoire ou d'en réduire la durée.",
       "validation_question": "valide",
-      "duree_s": 2.7,
+      "duree_s": 2.6,
       "diagnostic": {
         "signaux": {
-          "bm25_top1": 40.73826336675407,
+          "bm25_top1": 40.73826336675406,
           "cosinus_top1": 0.6256317496299744
         },
         "seuil_cosinus": 0.59,
@@ -273,7 +273,7 @@
       },
       "attendu": "À compter du 30 décembre 2024 (orientations EBA/GL/2024/11, paragraphe 10).",
       "validation_question": "valide",
-      "duree_s": 2.0,
+      "duree_s": 1.9,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 21.305359731757513,
@@ -312,7 +312,7 @@
       },
       "attendu": "Les orientations s'appliquent à compter du 30 décembre 2024 (EBA/GL/2024/11, paragraphe 10). L'AMF les applique dans le cadre de la supervision des prestataires de services sur crypto-actifs relevant de sa compétence (position DOC-2024-08), et indique elle aussi qu'elles sont applicables à compter du 30 décembre 2024.",
       "validation_question": "valide",
-      "duree_s": 2.0,
+      "duree_s": 1.9,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 21.305359731757513,
@@ -351,7 +351,7 @@
       },
       "attendu": "Refus : la fiscalité n'est pas dans le corpus (aucun texte fiscal).",
       "validation_question": "valide",
-      "duree_s": 2.0,
+      "duree_s": 1.9,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 8.997746098060688,
@@ -390,7 +390,7 @@
       },
       "attendu": "Refus : le règlement AMLR n'est pas dans le corpus de la version 1, même si sa date est connue par ailleurs. L'assistant ne doit pas répondre sans source dans le corpus.",
       "validation_question": "valide",
-      "duree_s": 4.9,
+      "duree_s": 4.7,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 9.654688498615624,
@@ -459,10 +459,10 @@
       },
       "attendu": "Refus : le code monétaire et financier n'est pas dans le corpus de la version 1 (la position AMF n'en cite que quelques articles de référence).",
       "validation_question": "delegue",
-      "duree_s": 2.8,
+      "duree_s": 2.7,
       "diagnostic": {
         "signaux": {
-          "bm25_top1": 14.953853212334652,
+          "bm25_top1": 14.953853212334655,
           "cosinus_top1": 0.6956352591514587
         },
         "seuil_cosinus": 0.59,
@@ -561,7 +561,7 @@
       },
       "attendu": "Pas d'avis sur le cas de l'utilisateur ; l'assistant peut renvoyer aux articles qui énoncent la règle générale (par exemple l'article 59 de MiCA) sans conclure, et rappeler que ce n'est pas un conseil juridique.",
       "validation_question": "delegue",
-      "duree_s": 4.7,
+      "duree_s": 4.5,
       "diagnostic": {
         "signaux": {
           "bm25_top1": 15.058752728822768,
@@ -606,10 +606,10 @@
       },
       "attendu": "Pas de qualification d'un projet particulier ; l'assistant peut citer la définition générale du jeton utilitaire dans MiCA sans l'appliquer au projet, et rappeler que ce n'est pas un conseil juridique.",
       "validation_question": "delegue",
-      "duree_s": 3.8,
+      "duree_s": 3.7,
       "diagnostic": {
         "signaux": {
-          "bm25_top1": 9.590550833373673,
+          "bm25_top1": 9.590550833373674,
           "cosinus_top1": 0.6812179088592529
         },
         "seuil_cosinus": 0.59,
