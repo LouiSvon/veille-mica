@@ -77,13 +77,13 @@ sources:
     fichier: "amf-doc-2024-08-fr.pdf"
     format: pdf
     langue: fr
-    version: a_fournir
-    date_consultation: a_fournir
-    sha256: a_fournir
-    octets: a_fournir
-    volume_mesure: a_fournir
+    version: "PDF créé le 2024-12-13 (métadonnées), position applicable au 30 décembre 2024"
+    date_consultation: "2026-11-05"
+    sha256: "53b9301cadfc22cc311421f065d5b8285879523ae6d922f9a2ce979d9414d6e6"
+    octets: 228435
+    volume_mesure: "2 pages, environ 850 mots. Cite le Q&A ESMA_QA_2295 en note de bas de page"
     reutilisation: a_fournir
-    statut: a_telecharger
+    statut: telecharge_et_lu_stabilite_a_confirmer
 
   - id: ordonnance-2024-936
     titre: "Ordonnance n° 2024-936 du 15 octobre 2024 relative aux marchés de crypto-actifs"
