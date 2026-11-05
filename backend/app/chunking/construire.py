@@ -21,7 +21,7 @@ BRUT = RACINE / "data" / "raw"
 SORTIE = RACINE / "data" / "processed" / "chunks.jsonl"
 
 # Prefixe de l'en-tête courant à retirer de chaque page, par source (propre à la mise en page de chaque PDF).
-ENTETES = {"eba-gl-2024-11": "ORIENTATIONS SUR LES EXIGENCES"}
+ENTETES = {"eba-gl-2024-11": "ORIENTATIONS SUR LES EXIGENCES", "amf-doc-2024-08": "Position AMF - DOC-2024-08"}
 STATUTS_PRETS = {"telecharge_et_lu"}
 
 
@@ -40,10 +40,10 @@ def passages_de(source: dict, brut: Path = BRUT) -> list[dict]:
     sid, url = source["id"], source["url_officielle"]
     if source["format"] == "xhtml":
         res = decouper_xhtml(chemin, sid, url)
-    elif sid in ENTETES:
+    elif sid == "eba-gl-2024-11":
         res = decouper_orientations(extraire_pages(chemin), sid, url, ENTETES[sid])
     elif source["format"] == "pdf":
-        res = decouper_document_court(extraire_pages(chemin), sid, url, source["titre"])
+        res = decouper_document_court(extraire_pages(chemin), sid, url, source["titre"], ENTETES.get(sid))
     else:
         raise ValueError(f"format non géré pour {sid} : {source['format']}")
     for p in res:

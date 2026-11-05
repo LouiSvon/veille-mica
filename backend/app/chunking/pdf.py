@@ -171,12 +171,12 @@ def decouper_orientations(pages: list[str], source_id: str, url: str, prefixe_en
     return passages
 
 
-def decouper_document_court(pages: list[str], source_id: str, url: str, titre: str) -> list[dict]:
+def decouper_document_court(pages: list[str], source_id: str, url: str, titre: str, prefixe_entete: str | None = None) -> list[dict]:
     """Document sans numérotation : blocs séparés par une ligne vide, regroupés jusqu'au seuil. Notes à part."""
     passages: list[dict] = []
     blocs: list[tuple[int, str]] = []
     for numero_page, page in enumerate(pages, start=1):
-        corps, notes = _separer_page(page, None)
+        corps, notes = _separer_page(page, prefixe_entete if numero_page > 1 else None)
         for bloc in re.split(r"\n\s*\n", "\n".join(corps)):
             texte = _assembler(bloc.split("\n"))
             if texte:

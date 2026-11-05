@@ -94,8 +94,16 @@ def test_eba_notes_de_bas_de_page_conservees():
 
 @pytest.mark.skipif(not AMF.exists(), reason="PDF brut absent (data/raw non versionné)")
 def test_amf_corps_et_note_esma_qa_2295():
-    p = decouper_document_court(extraire_pages(AMF), "amf", "u", "Position AMF DOC-2024-08")
+    p = decouper_document_court(extraire_pages(AMF), "amf", "u", "Position AMF DOC-2024-08", "Position AMF - DOC-2024-08")
     corps = " ".join(c["texte"] for c in p if c["type"] == "bloc")
     notes = " ".join(c["texte"] for c in p if c["type"] == "note")
     assert "applicables à compter du 30 décembre 2024" in corps
     assert "ESMA_QA_2295" in notes and "ESMA_QA_2295" not in corps
+
+
+@pytest.mark.skipif(not AMF.exists(), reason="PDF brut absent (data/raw non versionné)")
+def test_amf_en_tete_de_page_2_retire_et_phrase_continue():
+    p = decouper_document_court(extraire_pages(AMF), "amf", "u", "t", "Position AMF - DOC-2024-08")
+    corps = " ".join(c["texte"] for c in p if c["type"] == "bloc")
+    assert "Position AMF - DOC-2024-08 –" not in corps
+    assert "exclusivement les services de gestion de portefeuille de crypto-actifs ou de conseils en crypto-actifs et ayant leur siège" in corps.replace("\n", " ")

@@ -34,3 +34,10 @@ Ceci n'est pas un conseil juridique. Ce document liste les limites constatées, 
 - Question « Jusqu'à quand les prestataires déjà actifs peuvent-ils continuer… » : BM25 trouve l'article 143 en premier, la recherche vectorielle ne le trouve pas, l'hybride le met 3e.
 - Question hors corpus (« capitale de la France ») : les trois modes renvoient quand même des passages. Le score de fusion RRF n'a pas de sens absolu : le refus par seuil (lot D) devra s'appuyer sur le cosinus et le score BM25 bruts, calibrés sur des questions hors corpus.
 - Les identifiants de passages d'un article sans numéro de paragraphe mais coupé en morceaux ont une forme peu lisible (`tfr-art-3-p-s1`). Ils restent uniques.
+
+## Contrôle indicatif sur 7 questions de développement non validées (2026-11-05)
+
+Ce ne sont pas des scores : les questions sont proposées par l'assistant et pas encore validées par Louis, n = 7.
+- Les trois modes retrouvent le passage de référence dans les 5 premiers pour 6 questions sur 7.
+- La question de définition « Comment MiCA définit-il un crypto-actif ? » (q004) n'est retrouvée par aucun mode dans les 10 premiers : le terme « crypto-actif » apparaît dans presque tous les passages et le passage des définitions (article 3, morceau 1) ne se distingue pas. À reprendre après validation : étiquette de définition dans le texte indexé, ou recherche sur le terme défini.
+- Défaut corrigé pendant la rédaction : l'en-tête courant de la page 2 de la position AMF se retrouvait au milieu d'une phrase. Retiré, avec un test.
